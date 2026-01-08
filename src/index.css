@@ -98,15 +98,10 @@ html, body {
 
 /* Custom Cursor (Two-State) */
 @media (pointer: fine) {
-    /* Apply globally to everything */
     html, body, *:not(.window-header) {
         cursor: url('/images/pointinghand.svg') 13 9, auto !important;
     }
     
-    /* Specific overrides for interactive elements won't be needed 
-       since we want the pointing hand everywhere, but we ensure specificity here */
-    
-    /* Active/Grabbing state on EVERYTHING when clicked */
     html:active, body:active, *:active {
         cursor: url('/images/closedhand.svg') 16 16, grabbing !important;
     }

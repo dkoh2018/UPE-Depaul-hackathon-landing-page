@@ -263,10 +263,10 @@ export default function CodeEditorWindow() {
 
   const containerStyle = {
     position: 'fixed',
-    zIndex: 40,
+    zIndex: 45,
     width: size.width,
     height: size.height,
-    ...(position ? { left: position.x, top: position.y } : { top: 280, left: 150 }),
+    ...(position ? { left: position.x, top: position.y } : { top: 360, left: 100 }),
   };
 
 
