@@ -68,6 +68,12 @@ export default function DraggableWindow({
     
     const rect = windowRef.current.getBoundingClientRect();
     aspectRatio.current = rect.width / rect.height;
+
+    // If we haven't dragged yet (position is null), we need to lock in the current position
+    // so that resizing doesn't grow "backwards" due to bottom/right initial positioning.
+    if (!position) {
+      setPosition({ x: rect.left, y: rect.top });
+    }
     
     setResizeStart({
       x: e.clientX,
@@ -76,7 +82,7 @@ export default function DraggableWindow({
       height: size?.height ?? rect.height,
     });
     setIsResizing(true);
-  }, [size]);
+  }, [size, position]);
 
   const handleResizeTouchStart = useCallback((e) => {
     e.stopPropagation();
@@ -84,6 +90,11 @@ export default function DraggableWindow({
     
     const rect = windowRef.current.getBoundingClientRect();
     aspectRatio.current = rect.width / rect.height;
+
+    // Lock position if not already set
+    if (!position) {
+      setPosition({ x: rect.left, y: rect.top });
+    }
     
     setResizeStart({
       x: touch.clientX,
@@ -92,7 +103,7 @@ export default function DraggableWindow({
       height: size?.height ?? rect.height,
     });
     setIsResizing(true);
-  }, [size]);
+  }, [size, position]);
 
   const handleMouseMove = useCallback((e) => {
     if (isDragging) {
