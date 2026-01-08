@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeEditorWindow, PixelLabWindow, DraggableLogo, DraggableArrow } from '../windows'
+import { CodeEditorWindow, PixelLabWindow, DraggableLogo, DraggableArrow, CountdownWindow } from '../windows'
 import DesktopIcons from '../DesktopIcons'
 
 export default function Background({ children, pattern = 'scanlines', showCodeBoxes = true }) {
@@ -13,6 +13,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           <PixelLabWindow />
           <DraggableLogo />
           <DraggableArrow />
+          <CountdownWindow />
         </>
       )}
       <div style={contentStyle}>

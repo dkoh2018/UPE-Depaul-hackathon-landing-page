@@ -97,7 +97,7 @@ const RegistrationForm = () => {
         return (
             <div style={{ maxWidth: '590px', margin: '40px auto', padding: '0 16px', pointerEvents: 'none', position: 'relative', zIndex: 100 }}>
                 <div className="standard-dialog" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '20px' }}>
-                    <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '2px' }}>
+                    <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '5px' }}>
                         DEMONHACKS 2026
                     </h1>
                     <p style={{ marginTop: '12px', marginBottom: 0, fontSize: '14px' }}>
@@ -157,7 +157,7 @@ const RegistrationForm = () => {
             </form>
 
             <div className="standard-dialog" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '0', pointerEvents: 'auto' }}>
-                <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '2px' }}>
+                <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '5px' }}>
                     DEMONHACKS 2026
                 </h1>
                 <p style={{ marginTop: '12px', marginBottom: 0, fontSize: '14px' }}>
@@ -174,7 +174,7 @@ const RegistrationForm = () => {
                 <div className="separator"></div>
                 <div style={{ padding: '24px', background: '#fff' }}>
                     <p style={{ margin: '0 0 16px 0', fontSize: '14px', lineHeight: '1.6' }}>
-                        Join us for <strong>48 hours</strong> of hacking, learning, and building at DePaul University.
+                        Join us for <strong>24 hours</strong> of hacking, learning, and building at DePaul University.
                     </p>
                     <div style={{ borderTop: '1px solid #ccc', padding: '16px 0 0 0' }}>
                         <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Network</strong> with peers and industry professionals</p>

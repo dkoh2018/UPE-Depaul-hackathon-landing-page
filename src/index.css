@@ -94,6 +94,8 @@ html, body {
     -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
     min-height: 100vh; /* Ensure full height for cursor */
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* Custom Cursor (Two-State) */
@@ -145,6 +147,12 @@ textarea:focus {
     color: #000 !important;
     outline: 2px solid #000;
     outline-offset: -2px;
+}
+
+input, textarea, [data-slot="code-block"], .vscode-code-block {
+    user-select: text;
+    -webkit-user-select: text;
+    cursor: text;
 }
 
 input:-webkit-autofill,

@@ -18,10 +18,20 @@ export default function DraggableWindow({
   const windowRef = useRef(null);
   const aspectRatio = useRef(null);
 
+  const lastTouchRef = useRef(0);
+
+  const handleReset = useCallback(() => {
+    setPosition(null);
+    setSize(null);
+  }, []);
+
   const handleMouseDown = useCallback((e) => {
     if (e.button !== 0) return;
     e.preventDefault();
     
+    // Allow interacting with controls inside the title bar without dragging (e.g. close button)
+    if (e.target.tagName.toLowerCase() === 'button') return;
+
     const rect = windowRef.current.getBoundingClientRect();
     const currentX = position?.x ?? rect.left;
     const currentY = position?.y ?? rect.top;
@@ -31,6 +41,17 @@ export default function DraggableWindow({
   }, [position]);
 
   const handleTouchStart = useCallback((e) => {
+    // Allow interacting with controls
+    if (e.target.tagName.toLowerCase() === 'button') return;
+
+    // Double tap detection (300ms threshold)
+    const now = Date.now();
+    if (now - lastTouchRef.current < 300) {
+      handleReset();
+      return;
+    }
+    lastTouchRef.current = now;
+
     const touch = e.touches[0];
     const rect = windowRef.current.getBoundingClientRect();
     const currentX = position?.x ?? rect.left;
@@ -38,7 +59,7 @@ export default function DraggableWindow({
     
     setDragOffset({ x: touch.clientX - currentX, y: touch.clientY - currentY });
     setIsDragging(true);
-  }, [position]);
+  }, [position, handleReset]);
 
   const handleResizeMouseDown = useCallback((e) => {
     if (e.button !== 0) return;
@@ -177,6 +198,7 @@ export default function DraggableWindow({
           className="title-bar"
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
+          onDoubleClick={handleReset}
           style={{ cursor: isDragging ? 'grabbing' : 'grab', flexShrink: 0 }}
         >
           <button aria-label="Close" className="close"></button>
