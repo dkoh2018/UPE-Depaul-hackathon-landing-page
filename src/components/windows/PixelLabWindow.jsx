@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PixelCharacters from '../PixelCharacters';
+import { Z_INDEX } from '../../constants';
 import DraggableWindow from './DraggableWindow';
 
 export default function PixelLabWindow() {
@@ -21,7 +22,8 @@ export default function PixelLabWindow() {
       title="hackathon_lab.exe"
       initialPosition={{ bottom: 140, right: 125 }}
       style={{ width: `${windowSize.width}px`, height: `${windowSize.height}px` }}
-      zIndex={40}
+
+      zIndex={Z_INDEX.WINDOWS_BASE}
       resizable={true}
     >
       <div style={{ 

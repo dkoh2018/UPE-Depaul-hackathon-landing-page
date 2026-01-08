@@ -1,0 +1,7 @@
+export const Z_INDEX = {
+  DESKTOP_ICONS: 10,
+  ARROW: 30,
+  WINDOWS_BASE: 40,
+  WINDOWS_ACTIVE: 45,
+  LOGO: 200,
+};

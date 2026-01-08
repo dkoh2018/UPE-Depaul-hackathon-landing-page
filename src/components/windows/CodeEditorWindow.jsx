@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { Z_INDEX } from '../../constants';
 import { CodeBlock as CodeBlockPrimitive } from '@/components/animate-ui/primitives/animate/code-block';
 
 const hackathonCode = `// DemonHacks 2026 - DePaul University
@@ -263,7 +264,7 @@ export default function CodeEditorWindow() {
 
   const containerStyle = {
     position: 'fixed',
-    zIndex: 45,
+    zIndex: Z_INDEX.WINDOWS_ACTIVE,
     width: size.width,
     height: size.height,
     ...(position ? { left: position.x, top: position.y } : { top: 360, left: 100 }),
