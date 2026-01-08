@@ -214,7 +214,6 @@ const RegistrationForm = () => {
                             render={({ field, fieldState }) => (
                                 <Field style={{ marginBottom: '16px' }}>
                                     <FieldLabel htmlFor="email" required>University Email</FieldLabel>
-                                    <FieldDescription>Please enter your university email address.</FieldDescription>
                                     <Input {...field} id="email" type="email" placeholder="student@university.edu" style={{ width: '100%' }} />
                                     <FieldError message={fieldState.error?.message} />
                                 </Field>
