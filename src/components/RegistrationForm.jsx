@@ -95,7 +95,7 @@ const RegistrationForm = () => {
 
     if (submitted) {
         return (
-            <div style={{ maxWidth: '590px', margin: '40px auto', padding: '0 16px', pointerEvents: 'auto', position: 'relative', zIndex: 100 }}>
+            <div style={{ maxWidth: '590px', margin: '40px auto', padding: '0 16px', pointerEvents: 'none', position: 'relative', zIndex: 100 }}>
                 <div className="standard-dialog" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '20px' }}>
                     <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '2px' }}>
                         DEMONHACKS 2026
