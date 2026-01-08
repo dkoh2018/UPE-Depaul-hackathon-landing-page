@@ -105,7 +105,7 @@ const RegistrationForm = () => {
                     </p>
                 </div>
 
-                <div className="window">
+                <div className="window" style={{ pointerEvents: 'auto' }}>
                     <div className="title-bar">
                         <button aria-label="Close" className="close"></button>
                         <h1 className="title">Success</h1>
@@ -129,7 +129,7 @@ const RegistrationForm = () => {
             minHeight: '100vh',
             position: 'relative',
             zIndex: 100,
-            pointerEvents: 'auto',
+            pointerEvents: 'none',
         }}>
             <iframe 
                 name="hidden_iframe" 
@@ -156,7 +156,7 @@ const RegistrationForm = () => {
                 ))}
             </form>
 
-            <div className="standard-dialog" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '0' }}>
+            <div className="standard-dialog" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '0', pointerEvents: 'auto' }}>
                 <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '2px' }}>
                     DEMONHACKS 2026
                 </h1>
@@ -165,7 +165,7 @@ const RegistrationForm = () => {
                 </p>
             </div>
 
-            <div className="window" style={{ marginTop: '-2px', marginBottom: '0' }}>
+            <div className="window" style={{ marginTop: '-2px', marginBottom: '0', pointerEvents: 'auto' }}>
                 <div className="title-bar">
                     <button aria-label="Close" className="close"></button>
                     <h1 className="title">About the Event</h1>
@@ -185,7 +185,7 @@ const RegistrationForm = () => {
                 </div>
             </div>
 
-            <div className="window" style={{ marginTop: '-2px', marginBottom: '40px' }}>
+            <div className="window" style={{ marginTop: '-2px', marginBottom: '40px', pointerEvents: 'auto' }}>
                 <div className="title-bar">
                     <button aria-label="Close" className="close"></button>
                     <h1 className="title">Registration Form</h1>

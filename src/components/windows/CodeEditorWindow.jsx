@@ -266,7 +266,7 @@ export default function CodeEditorWindow() {
     zIndex: 40,
     width: size.width,
     height: size.height,
-    ...(position ? { left: position.x, top: position.y } : { top: 80, left: 220 }),
+    ...(position ? { left: position.x, top: position.y } : { top: 280, left: 150 }),
   };
 
 

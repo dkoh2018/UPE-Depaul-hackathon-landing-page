@@ -19,7 +19,7 @@ export default function PixelLabWindow() {
   return (
     <DraggableWindow
       title="hackathon_lab.exe"
-      initialPosition={{ bottom: 60, right: 200 }}
+      initialPosition={{ bottom: 60, right: 125 }}
       style={{ width: `${windowSize.width}px`, height: `${windowSize.height}px` }}
       zIndex={45}
       resizable={true}
