@@ -214,7 +214,8 @@ const RegistrationForm = () => {
                             render={({ field, fieldState }) => (
                                 <Field style={{ marginBottom: '16px' }}>
                                     <FieldLabel htmlFor="email" required>University Email</FieldLabel>
-                                    <Input {...field} id="email" type="email" placeholder="jdoe@depaul.edu" style={{ width: '100%' }} />
+                                    <FieldDescription>Please enter your university email address.</FieldDescription>
+                                    <Input {...field} id="email" type="email" placeholder="student@university.edu" style={{ width: '100%' }} />
                                     <FieldError message={fieldState.error?.message} />
                                 </Field>
                             )}
@@ -275,6 +276,7 @@ const RegistrationForm = () => {
                             render={({ field, fieldState }) => (
                                 <Field style={{ marginBottom: '16px' }}>
                                     <FieldLabel required>Team Status</FieldLabel>
+                                    <FieldDescription>Teams must have a minimum of 2 members.</FieldDescription>
                                     <div style={{ marginTop: '8px' }}>
                                         {TEAM_STATUS_OPTIONS.map((status, idx) => (
                                             <RadioItem
@@ -323,7 +325,7 @@ const RegistrationForm = () => {
                                         />
                                         <input
                                             type="email"
-                                            placeholder={`email${idx + 1}@depaul.edu`}
+                                            placeholder={`email${idx + 1}@university.edu`}
                                             value={teammate.email}
                                             onChange={(e) => updateTeammate(idx, 'email', e.target.value)}
                                             onBlur={() => handleTeammateBlur(idx, 'email')}
