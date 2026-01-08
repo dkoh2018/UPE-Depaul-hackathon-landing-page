@@ -14,6 +14,8 @@ const RegistrationForm = () => {
         { name: '', email: '', nameError: '' },
         { name: '', email: '', nameError: '' },
         { name: '', email: '', nameError: '' },
+        { name: '', email: '', nameError: '' },
+        { name: '', email: '', nameError: '' },
     ]);
 
     const sanitizeName = (name) => {
@@ -294,7 +296,7 @@ const RegistrationForm = () => {
 
                         <Field style={{ marginBottom: '16px' }}>
                             <FieldLabel>Teammate Details</FieldLabel>
-                            <FieldDescription>Optional: Add up to 3 teammates (max 4 per team)</FieldDescription>
+                            <FieldDescription>Add up to 5 teammates (max 6 per team)</FieldDescription>
                             
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '8px', marginTop: '8px', marginBottom: '4px' }}>
                                 <span style={{ fontSize: '11px', fontWeight: '500', color: '#666' }}>Full Name</span>

@@ -26,10 +26,9 @@ export const TRACK_OPTIONS = [
 ];
 
 export const TEAM_STATUS_OPTIONS = [
-    "Solo", 
-    "We already have a team", 
     "Currently solo, but looking to join a team", 
-    "We have a small team, but others can join"
+    "I have a small team, but others can join",
+    "I already have a team (max 6 members)"
 ];
 
 export const DIETARY_OPTIONS = ["None", "Vegetarian", "Vegan", "Nut Allergy", "Other"];
