@@ -127,6 +127,9 @@ export default function DraggableWindow({
   }, [isDragging, isResizing, dragOffset, resizeStart]);
 
   const handleTouchMove = useCallback((e) => {
+    // Prevent scrolling while dragging
+    if (e.cancelable) e.preventDefault();
+
     const touch = e.touches[0];
     
     if (isDragging) {

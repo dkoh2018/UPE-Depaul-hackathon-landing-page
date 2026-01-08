@@ -21,6 +21,11 @@ export default function Draggable({
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const elementRef = useRef(null);
+  const lastTouchRef = useRef(0);
+
+  const handleReset = useCallback(() => {
+    setPosition(null);
+  }, []);
 
   const startDrag = useCallback((clientX, clientY) => {
     const rect = elementRef.current.getBoundingClientRect();
@@ -39,9 +44,18 @@ export default function Draggable({
 
   const handleTouchStart = useCallback((e) => {
     e.preventDefault();
+    
+    // Double tap detection (300ms threshold)
+    const now = Date.now();
+    if (now - lastTouchRef.current < 300) {
+      handleReset();
+      return;
+    }
+    lastTouchRef.current = now;
+
     const touch = e.touches[0];
     startDrag(touch.clientX, touch.clientY);
-  }, [startDrag]);
+  }, [startDrag, handleReset]);
 
   const updatePosition = useCallback((clientX, clientY) => {
     if (!isDragging) return;
@@ -60,6 +74,9 @@ export default function Draggable({
   }, [updatePosition]);
 
   const handleTouchMove = useCallback((e) => {
+    // Prevent scrolling while dragging
+    if (e.cancelable) e.preventDefault();
+    
     const touch = e.touches[0];
     updatePosition(touch.clientX, touch.clientY);
   }, [updatePosition]);
@@ -105,6 +122,7 @@ export default function Draggable({
       className={className} 
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
+      onDoubleClick={handleReset}
     >
       {children}
     </div>
