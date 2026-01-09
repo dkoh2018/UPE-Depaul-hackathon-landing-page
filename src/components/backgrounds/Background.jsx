@@ -179,7 +179,10 @@ SATURDAY, MARCH 1, 2026
   |
   +-------------------------------------+
   |          END OF SCHEDULE            |
-  +-------------------------------------+`}
+  +-------------------------------------+
+
+
+`}
               onClose={() => setShowScheduleWindow(false)} 
               zIndex={Z_INDEX.COUNTDOWN + 11}
               onFocus={() => bringToFront('schedule')}
