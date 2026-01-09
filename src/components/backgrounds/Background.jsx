@@ -133,46 +133,57 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
             <TextWindow 
               title="schedule.txt"
               content={`=======================================
+!!! DRAFT - TESTING ONLY !!!
+!!! NOT FINAL !!!
+
 DEMONHACKS 2026
-SCHEDULE
-THIS IS A TEST SCHEDULE THIS IS A TEST I REPEAT THIS IS A TEST
+OFFICIAL SCHEDULE
 =======================================
 
-FRIDAY, FEBRUARY 28, 2026
----------------------------------------
+  +-------------------------------------+
+  |      FRIDAY, FEBRUARY 28, 2026      |
+  +-------------------------------------+
   |
-  o  12:00 PM - 1:00 PM
-  |  Opening & Introductions
+  o  11:30 AM - 12:30 PM
+  |  Check-in & Registration
   |
-  o  1:00 PM - 11:00 PM
-  |  Hacking Time!
+  o  12:30 PM - 1:00 PM
+  |  Opening Ceremony
   |
-  o  11:00 PM - 12:00 AM
-  |  Late Night Coding
-  |  (or take a nap!)
+  o  1:00 PM - 2:30 PM
+  |  Team Formation & Lunch
   |
----------------------------------------
-SATURDAY, MARCH 1, 2026
----------------------------------------
+  o  2:30 PM
+  |  >>> HACKING BEGINS <<<
+  |
+  |  [ 4.5 HOURS UNTIL DINNER ]
+  |
+  o  7:00 PM - 8:30 PM
+  |  Dinner Break (Off-site)
+  |
+  |  [ 3 HOURS UNTIL MIDNIGHT ]
+  |
+  o  11:30 PM - 12:00 AM
+  |  Midnight Checkpoint
+  |
+  +-------------------------------------+
+  |       SATURDAY, MARCH 1, 2026       |
+  +-------------------------------------+
   |
   o  12:00 AM - 8:00 AM
-  |  Code or Sleep
-  |  (your choice!)
+  |  [ 8 HOURS OVERNIGHT GRIND ]
   |
-  o  8:00 AM - 9:00 AM
-  |  Breakfast
+  o  8:00 AM - 9:30 AM
+  |  Morning Coffee Run
   |
-  o  9:00 AM - 10:00 AM
-  |  Final Coding Sprint
+  o  9:30 AM - 10:30 AM
+  |  Upload & Polish
   |
-  o  10:00 AM - 11:00 AM
-  |  Project Submissions
-  |
-  o  11:00 AM - 11:30 AM
-  |  Judging & Demos
+  o  10:30 AM
+  |  Submit code
   |
   o  11:30 AM - 12:00 PM
-  |  Awards Ceremony
+  |  Awards & Closing
   |
   +-------------------------------------+
   |          END OF SCHEDULE            |
