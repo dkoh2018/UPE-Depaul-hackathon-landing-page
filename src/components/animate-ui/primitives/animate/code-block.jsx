@@ -104,7 +104,6 @@ function CodeBlock({
             done: true,
           });
           
-          // Loop: restart animation after loopDelay
           if (loop) {
             loopTimeout = setTimeout(() => {
               setVisibleCode('');

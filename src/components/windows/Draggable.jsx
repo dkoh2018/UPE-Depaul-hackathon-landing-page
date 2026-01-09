@@ -1,15 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 
-/**
- * A reusable wrapper component that makes its children draggable.
- * 
- * @param {Object} props
- * @param {React.ReactNode} props.children - The content to be dragged.
- * @param {Object} props.initialPos - { x, y } coordinates for initial placement.
- * @param {Object} props.style - Additional inline styles for the container.
- * @param {string} props.className - Additional classes for the container.
- * @param {number} props.zIndex - Z-index for the container.
- */
 export default function Draggable({ 
   children, 
   initialPos = { x: 0, y: 0 }, 
@@ -45,7 +35,6 @@ export default function Draggable({
   const handleTouchStart = useCallback((e) => {
     e.preventDefault();
     
-    // Double tap detection (300ms threshold)
     const now = Date.now();
     if (now - lastTouchRef.current < 300) {
       handleReset();
@@ -62,7 +51,6 @@ export default function Draggable({
     
     const newX = clientX - dragOffset.x;
     const newY = clientY - dragOffset.y;
-    // Constrain to window bounds with some padding
     const constrainedX = Math.max(-50, Math.min(window.innerWidth - 50, newX));
     const constrainedY = Math.max(0, Math.min(window.innerHeight - 50, newY));
     
@@ -74,7 +62,6 @@ export default function Draggable({
   }, [updatePosition]);
 
   const handleTouchMove = useCallback((e) => {
-    // Prevent scrolling while dragging
     if (e.cancelable) e.preventDefault();
     
     const touch = e.touches[0];
@@ -111,7 +98,6 @@ export default function Draggable({
     cursor: isDragging ? 'grabbing' : 'grab',
     touchAction: 'none',
     ...style,
-    // Use state position if dragging has started, otherwise use initialPos
     ...(position ? { left: position.x, top: position.y } : { left: initialPos.x, top: initialPos.y }),
   };
 

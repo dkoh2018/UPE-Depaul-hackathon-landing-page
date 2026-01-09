@@ -26,7 +26,7 @@ export default function CountdownWindow({ onClose, zIndex, onFocus, initialPosit
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        const milliseconds = Math.floor((distance % 1000) / 10); // divide by 10 to get 2 digits (0-99)
+        const milliseconds = Math.floor((distance % 1000) / 10);
 
         setTimeLeft({ days, hours, minutes, seconds, milliseconds });
       }

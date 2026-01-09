@@ -45,7 +45,6 @@ function CodeDisplay({
       )}
       style={{ backgroundColor: '#0a0a0a' }}
     >
-      {/* Header */}
       <div className="flex items-center justify-between px-4 h-12 bg-zinc-900/50 border-b border-zinc-800">
         <div className="flex items-center gap-2">
           <Icon className="size-4 text-zinc-500" />
@@ -54,7 +53,6 @@ function CodeDisplay({
           </span>
         </div>
         
-        {/* Copy Button - appears on hover */}
         <button 
           onClick={handleCopy} 
           className="h-8 w-8 flex items-center justify-center rounded-md opacity-0 group-hover:opacity-100 transition-opacity bg-zinc-800/80 backdrop-blur-sm hover:bg-zinc-700"
@@ -68,14 +66,11 @@ function CodeDisplay({
         </button>
       </div>
       
-      {/* Code Content */}
       <div 
         className={cn(
           'p-5 overflow-x-auto',
           'font-mono text-sm leading-relaxed',
-          // Hide scrollbar
           'scrollbar-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]',
-          // Shiki overrides
           '[&_pre]:!bg-transparent [&_pre]:!m-0 [&_pre]:!p-0',
           '[&_code]:!bg-transparent [&_code]:!text-sm [&_code]:!leading-relaxed',
           '[&_.line]:block'

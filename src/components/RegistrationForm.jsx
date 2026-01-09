@@ -254,6 +254,17 @@ const RegistrationForm = () => {
                         <p style={{ margin: '0 0 16px 0', fontSize: '14px', lineHeight: '1.6' }}>
                             Join us for <strong>24 hours</strong> of hacking, learning, and building at DePaul University.
                         </p>
+                        <div style={{ 
+                            marginBottom: '20px', 
+                            padding: '10px 12px', 
+                            background: '#f8f8f8', 
+                            border: '1px inset #808080', 
+                            borderRadius: '2px'
+                        }}>
+                            <span style={{ fontSize: '11px', color: '#555' }}>
+                                Not a DePaul student? <strong>No problem.</strong> All university & graduate students are welcome!
+                            </span>
+                        </div>
                         <div style={{ borderTop: '1px solid #ccc', padding: '16px 0 0 0' }}>
                             <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Network</strong> with peers and industry professionals</p>
                             <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Topic talks</strong> throughout the event</p>
@@ -297,6 +308,7 @@ const RegistrationForm = () => {
                                     <Field style={{ marginBottom: '16px' }}>
                                         <FieldLabel htmlFor="email" required>University Email</FieldLabel>
                                         <Input {...field} id="email" type="email" placeholder="student@university.edu" style={{ width: '100%' }} />
+                                        <FieldDescription>Valid for ALL .edu addresses—all colleges & grad programs welcome!</FieldDescription>
                                         <FieldError message={fieldState.error?.message} />
                                     </Field>
                                 )}
