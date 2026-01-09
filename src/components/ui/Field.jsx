@@ -14,7 +14,7 @@ export const FieldLabel = ({ children, htmlFor, required, className = "" }) => (
 );
 
 export const FieldDescription = ({ children, className = "" }) => (
-    <p className={className} style={{ marginTop: '4px', fontSize: '9pt', color: '#444' }}>
+    <p className={className} style={{ marginTop: '4px', fontSize: '9pt', color: '#666' }}>
         {children}
     </p>
 );
