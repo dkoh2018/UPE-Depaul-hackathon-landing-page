@@ -8,6 +8,8 @@ import { Field, FieldLabel, FieldError, FieldDescription, Input, Select, RadioIt
 const RegistrationForm = () => {
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
+    const [showAbout, setShowAbout] = useState(true);
+    const [showForm, setShowForm] = useState(true);
     const iframeRef = useRef(null);
     
     const [teammates, setTeammates] = useState([
@@ -128,7 +130,6 @@ const RegistrationForm = () => {
             maxWidth: '590px', 
             margin: '0 auto', 
             padding: '20px 16px 60px 16px',
-            minHeight: '100vh',
             position: 'relative',
             zIndex: 100,
             pointerEvents: 'none',
@@ -167,213 +168,244 @@ const RegistrationForm = () => {
                 </p>
             </div>
 
-            <div className="window" style={{ marginTop: '-2px', marginBottom: '0', pointerEvents: 'auto' }}>
-                <div className="title-bar">
-                    <button aria-label="Close" className="close"></button>
-                    <h1 className="title">About the Event</h1>
-                    <button aria-label="Resize" disabled className="hidden"></button>
-                </div>
-                <div className="separator"></div>
-                <div style={{ padding: '24px', background: '#fff' }}>
-                    <p style={{ margin: '0 0 16px 0', fontSize: '14px', lineHeight: '1.6' }}>
-                        Join us for <strong>24 hours</strong> of hacking, learning, and building at DePaul University.
-                    </p>
-                    <div style={{ borderTop: '1px solid #ccc', padding: '16px 0 0 0' }}>
-                        <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Network</strong> with peers and industry professionals</p>
-                        <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Topic talks</strong> throughout the event</p>
-                        <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Prizes</strong> for top 3 teams, judged by club officers & industry pros</p>
-                        <p style={{ margin: 0, fontSize: '13px' }}>• <strong>Free food</strong> provided throughout the event</p>
+            {showAbout && (
+                <div className="window" style={{ marginTop: '-2px', marginBottom: '0', pointerEvents: 'auto' }}>
+                    <div className="title-bar">
+                        <button 
+                            aria-label="Close" 
+                            className="close"
+                            onClick={() => setShowAbout(false)}
+                        ></button>
+                        <h1 className="title">About the Event</h1>
+                        <button aria-label="Resize" disabled className="hidden"></button>
+                    </div>
+                    <div className="separator"></div>
+                    <div style={{ padding: '24px', background: '#fff' }}>
+                        <p style={{ margin: '0 0 16px 0', fontSize: '14px', lineHeight: '1.6' }}>
+                            Join us for <strong>24 hours</strong> of hacking, learning, and building at DePaul University.
+                        </p>
+                        <div style={{ borderTop: '1px solid #ccc', padding: '16px 0 0 0' }}>
+                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Network</strong> with peers and industry professionals</p>
+                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Topic talks</strong> throughout the event</p>
+                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Prizes</strong> for top 3 teams, judged by club officers & industry pros</p>
+                            <p style={{ margin: 0, fontSize: '13px' }}>• <strong>Free food</strong> provided throughout the event</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
 
-            <div className="window" style={{ marginTop: '-2px', marginBottom: '40px', pointerEvents: 'auto' }}>
-                <div className="title-bar">
-                    <button aria-label="Close" className="close"></button>
-                    <h1 className="title">Registration Form</h1>
-                    <button aria-label="Resize" className="resize"></button>
-                </div>
-                <div className="separator"></div>
-                <div className="window-pane" style={{ padding: '20px' }}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
-                        <Controller
-                            name="fullName"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field style={{ marginBottom: '16px' }}>
-                                    <FieldLabel htmlFor="fullName" required>Full Name</FieldLabel>
-                                    <Input {...field} id="fullName" placeholder="John Doe" style={{ width: '100%' }} />
-                                    <FieldError message={fieldState.error?.message} />
-                                </Field>
-                            )}
-                        />
+            {showForm ? (
+                <div className="window" style={{ marginTop: '-2px', marginBottom: '40px', pointerEvents: 'auto' }}>
+                    <div className="title-bar">
+                        <button 
+                            aria-label="Close" 
+                            className="close"
+                            onClick={() => setShowForm(false)}
+                        ></button>
+                        <h1 className="title">Registration Form</h1>
+                        <button aria-label="Resize" disabled className="hidden"></button>
+                    </div>
+                    <div className="separator"></div>
+                    <div className="window-pane" style={{ padding: '20px' }}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <Controller
+                                name="fullName"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field style={{ marginBottom: '16px' }}>
+                                        <FieldLabel htmlFor="fullName" required>Full Name</FieldLabel>
+                                        <Input {...field} id="fullName" placeholder="John Doe" style={{ width: '100%' }} />
+                                        <FieldError message={fieldState.error?.message} />
+                                    </Field>
+                                )}
+                            />
 
-                        <Controller
-                            name="email"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field style={{ marginBottom: '16px' }}>
-                                    <FieldLabel htmlFor="email" required>University Email</FieldLabel>
-                                    <Input {...field} id="email" type="email" placeholder="student@university.edu" style={{ width: '100%' }} />
-                                    <FieldError message={fieldState.error?.message} />
-                                </Field>
-                            )}
-                        />
+                            <Controller
+                                name="email"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field style={{ marginBottom: '16px' }}>
+                                        <FieldLabel htmlFor="email" required>University Email</FieldLabel>
+                                        <Input {...field} id="email" type="email" placeholder="student@university.edu" style={{ width: '100%' }} />
+                                        <FieldError message={fieldState.error?.message} />
+                                    </Field>
+                                )}
+                            />
 
-                        <Controller
-                            name="gradYear"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field style={{ marginBottom: '16px' }}>
-                                    <FieldLabel htmlFor="gradYear" required>Graduation Year</FieldLabel>
-                                    <Select {...field} id="gradYear" style={{ width: '100%' }}>
-                                        <option value="">Select year...</option>
-                                        {GRAD_YEAR_OPTIONS.map(year => (
-                                            <option key={year} value={year}>{year}</option>
-                                        ))}
-                                    </Select>
-                                    <FieldError message={fieldState.error?.message} />
-                                </Field>
-                            )}
-                        />
+                            <Controller
+                                name="gradYear"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field style={{ marginBottom: '16px' }}>
+                                        <FieldLabel htmlFor="gradYear" required>Graduation Year</FieldLabel>
+                                        <Select {...field} id="gradYear" style={{ width: '100%' }}>
+                                            <option value="">Select year...</option>
+                                            {GRAD_YEAR_OPTIONS.map(year => (
+                                                <option key={year} value={year}>{year}</option>
+                                            ))}
+                                        </Select>
+                                        <FieldError message={fieldState.error?.message} />
+                                    </Field>
+                                )}
+                            />
 
-                        <Controller
-                            name="track"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field style={{ marginBottom: '16px' }}>
-                                    <FieldLabel required>Hackathon Track</FieldLabel>
-                                    <div style={{ marginTop: '8px' }}>
-                                        {TRACK_OPTIONS.map((track, idx) => (
-                                            <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '6px', marginBottom: '8px', paddingLeft: '4px' }}>
-                                                <input 
-                                                    type="radio"
-                                                    id={`track-${idx}`}
+                            <Controller
+                                name="track"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field style={{ marginBottom: '16px' }}>
+                                        <FieldLabel required>Hackathon Track</FieldLabel>
+                                        <div style={{ marginTop: '8px' }}>
+                                            {TRACK_OPTIONS.map((track, idx) => (
+                                                <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '6px', marginBottom: '8px', paddingLeft: '4px' }}>
+                                                    <input 
+                                                        type="radio"
+                                                        id={`track-${idx}`}
+                                                        name={field.name}
+                                                        value={track.value}
+                                                        checked={field.value === track.value}
+                                                        onChange={() => field.onChange(track.value)}
+                                                        onBlur={field.onBlur}
+                                                        ref={idx === 0 ? field.ref : undefined}
+                                                        style={{ marginTop: '3px', flexShrink: 0 }}
+                                                    />
+                                                    <label htmlFor={`track-${idx}`} style={{ cursor: 'pointer' }}>
+                                                        <span style={{ fontSize: '13px', fontWeight: '500', display: 'block' }}>{track.title}</span>
+                                                        <span style={{ fontSize: '11px', color: '#666', display: 'block', marginTop: '2px' }}>{track.description}</span>
+                                                    </label>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <FieldError message={fieldState.error?.message} />
+                                    </Field>
+                                )}
+                            />
+
+                            <Controller
+                                name="teamStatus"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field style={{ marginBottom: '16px' }}>
+                                        <FieldLabel required>Team Status</FieldLabel>
+                                        <FieldDescription>Teams must have a minimum of 2 members.</FieldDescription>
+                                        <div style={{ marginTop: '8px' }}>
+                                            {TEAM_STATUS_OPTIONS.map((status, idx) => (
+                                                <RadioItem
+                                                    key={idx}
                                                     name={field.name}
-                                                    value={track.value}
-                                                    checked={field.value === track.value}
-                                                    onChange={() => field.onChange(track.value)}
+                                                    value={status}
+                                                    label={status}
+                                                    checked={field.value === status}
+                                                    onChange={() => field.onChange(status)}
                                                     onBlur={field.onBlur}
                                                     ref={idx === 0 ? field.ref : undefined}
-                                                    style={{ marginTop: '3px', flexShrink: 0 }}
                                                 />
-                                                <label htmlFor={`track-${idx}`} style={{ cursor: 'pointer' }}>
-                                                    <span style={{ fontSize: '13px', fontWeight: '500', display: 'block' }}>{track.title}</span>
-                                                    <span style={{ fontSize: '11px', color: '#666', display: 'block', marginTop: '2px' }}>{track.description}</span>
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <FieldError message={fieldState.error?.message} />
-                                </Field>
-                            )}
-                        />
+                                            ))}
+                                        </div>
+                                        <FieldError message={fieldState.error?.message} />
+                                    </Field>
+                                )}
+                            />
 
-                        <Controller
-                            name="teamStatus"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field style={{ marginBottom: '16px' }}>
-                                    <FieldLabel required>Team Status</FieldLabel>
-                                    <FieldDescription>Teams must have a minimum of 2 members.</FieldDescription>
-                                    <div style={{ marginTop: '8px' }}>
-                                        {TEAM_STATUS_OPTIONS.map((status, idx) => (
-                                            <RadioItem
-                                                key={idx}
-                                                name={field.name}
-                                                value={status}
-                                                label={status}
-                                                checked={field.value === status}
-                                                onChange={() => field.onChange(status)}
-                                                onBlur={field.onBlur}
-                                                ref={idx === 0 ? field.ref : undefined}
-                                            />
-                                        ))}
-                                    </div>
-                                    <FieldError message={fieldState.error?.message} />
-                                </Field>
-                            )}
-                        />
-
-                        <Field style={{ marginBottom: '16px' }}>
-                            <FieldLabel>Teammate Details</FieldLabel>
-                            <FieldDescription>Add up to 5 teammates (max 6 per team)</FieldDescription>
-                            
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '8px', marginTop: '8px', marginBottom: '4px' }}>
-                                <span style={{ fontSize: '11px', fontWeight: '500', color: '#666' }}>Full Name</span>
-                                <span style={{ fontSize: '11px', fontWeight: '500', color: '#666' }}>Email</span>
-                            </div>
-                            
-                            {teammates.map((teammate, idx) => (
-                                <div key={idx} style={{ marginBottom: '6px' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '8px' }}>
-                                        <input
-                                            type="text"
-                                            placeholder={`Teammate ${idx + 1}`}
-                                            value={teammate.name}
-                                            onChange={(e) => updateTeammate(idx, 'name', e.target.value)}
-                                            onBlur={() => handleTeammateBlur(idx, 'name')}
-                                            style={{ 
-                                                width: '100%', 
-                                                padding: '3px 5px', 
-                                                fontSize: '12px', 
-                                                border: teammate.nameError ? '1px solid red' : '1px solid #000', 
-                                                fontFamily: 'inherit', 
-                                                boxSizing: 'border-box' 
-                                            }}
-                                        />
-                                        <input
-                                            type="email"
-                                            placeholder={`email${idx + 1}@university.edu`}
-                                            value={teammate.email}
-                                            onChange={(e) => updateTeammate(idx, 'email', e.target.value)}
-                                            onBlur={() => handleTeammateBlur(idx, 'email')}
-                                            style={{ width: '100%', padding: '3px 5px', fontSize: '12px', border: '1px solid #000', fontFamily: 'inherit', boxSizing: 'border-box' }}
-                                        />
-                                    </div>
-                                    {teammate.nameError && (
-                                        <span style={{ fontSize: '10px', color: 'red', marginTop: '2px', display: 'block' }}>
-                                            {teammate.nameError}
-                                        </span>
-                                    )}
+                            <Field style={{ marginBottom: '16px' }}>
+                                <FieldLabel>Teammate Details</FieldLabel>
+                                <FieldDescription>Add up to 5 teammates (max 6 per team)</FieldDescription>
+                                
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '8px', marginTop: '8px', marginBottom: '4px' }}>
+                                    <span style={{ fontSize: '11px', fontWeight: '500', color: '#666' }}>Full Name</span>
+                                    <span style={{ fontSize: '11px', fontWeight: '500', color: '#666' }}>Email</span>
                                 </div>
-                            ))}
-                        </Field>
-
-                        <Controller
-                            name="dietaryRestrictions"
-                            control={form.control}
-                            render={({ field }) => (
-                                <Field style={{ marginBottom: '20px' }}>
-                                    <FieldLabel>Dietary Restrictions</FieldLabel>
-                                    <div style={{ marginTop: '8px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px' }}>
-                                        {DIETARY_OPTIONS.map((diet, idx) => (
-                                            <CheckboxItem
-                                                key={idx}
-                                                name={field.name}
-                                                value={diet}
-                                                label={diet}
-                                                checked={field.value?.includes(diet) || false}
-                                                onChange={(e) => {
-                                                    const newValue = e.target.checked
-                                                        ? [...(field.value || []), diet]
-                                                        : (field.value || []).filter(v => v !== diet);
-                                                    field.onChange(newValue);
+                                
+                                {teammates.map((teammate, idx) => (
+                                    <div key={idx} style={{ marginBottom: '6px' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '8px' }}>
+                                            <input
+                                                type="text"
+                                                placeholder={`Teammate ${idx + 1}`}
+                                                value={teammate.name}
+                                                onChange={(e) => updateTeammate(idx, 'name', e.target.value)}
+                                                onBlur={() => handleTeammateBlur(idx, 'name')}
+                                                style={{ 
+                                                    width: '100%', 
+                                                    padding: '3px 5px', 
+                                                    fontSize: '12px', 
+                                                    border: teammate.nameError ? '1px solid red' : '1px solid #000', 
+                                                    fontFamily: 'inherit', 
+                                                    boxSizing: 'border-box' 
                                                 }}
-                                                onBlur={field.onBlur}
                                             />
-                                        ))}
+                                            <input
+                                                type="email"
+                                                placeholder={`email${idx + 1}@university.edu`}
+                                                value={teammate.email}
+                                                onChange={(e) => updateTeammate(idx, 'email', e.target.value)}
+                                                onBlur={() => handleTeammateBlur(idx, 'email')}
+                                                style={{ width: '100%', padding: '3px 5px', fontSize: '12px', border: '1px solid #000', fontFamily: 'inherit', boxSizing: 'border-box' }}
+                                            />
+                                        </div>
+                                        {teammate.nameError && (
+                                            <span style={{ fontSize: '10px', color: 'red', marginTop: '2px', display: 'block' }}>
+                                                {teammate.nameError}
+                                            </span>
+                                        )}
                                     </div>
-                                </Field>
-                            )}
-                        />
+                                ))}
+                            </Field>
 
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-                            <Button type="submit" isLoading={submitting}>Register Now</Button>
-                        </div>
-                    </form>
+                            <Controller
+                                name="dietaryRestrictions"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <Field style={{ marginBottom: '20px' }}>
+                                        <FieldLabel>Dietary Restrictions</FieldLabel>
+                                        <div style={{ marginTop: '8px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px' }}>
+                                            {DIETARY_OPTIONS.map((diet, idx) => (
+                                                <CheckboxItem
+                                                    key={idx}
+                                                    name={field.name}
+                                                    value={diet}
+                                                    label={diet}
+                                                    checked={field.value?.includes(diet) || false}
+                                                    onChange={(e) => {
+                                                        const newValue = e.target.checked
+                                                            ? [...(field.value || []), diet]
+                                                            : (field.value || []).filter(v => v !== diet);
+                                                        field.onChange(newValue);
+                                                    }}
+                                                    onBlur={field.onBlur}
+                                                />
+                                            ))}
+                                        </div>
+                                    </Field>
+                                )}
+                            />
+
+                            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+                                <Button type="submit" isLoading={submitting}>Register Now</Button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className="window" style={{ marginTop: '-2px', marginBottom: '40px', pointerEvents: 'auto' }}>
+                    <div className="title-bar">
+                        <button 
+                            aria-label="Close" 
+                            className="close"
+                            disabled
+                            style={{ visibility: 'hidden' }}
+                        ></button>
+                        <h1 className="title">notice.txt</h1>
+                        <button aria-label="Resize" disabled className="hidden"></button>
+                    </div>
+                    <div className="separator"></div>
+                    <div style={{ padding: '30px', textAlign: 'center', background: '#fff' }}>
+                        <p style={{ fontSize: '14px', color: '#666', margin: 0 }}>
+                            Please refresh the page to get the form again.
+                        </p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

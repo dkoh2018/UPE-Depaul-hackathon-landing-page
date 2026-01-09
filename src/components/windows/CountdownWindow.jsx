@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DraggableWindow from './DraggableWindow';
 import { Z_INDEX } from '../../constants';
 
-export default function CountdownWindow({ onClose }) {
+export default function CountdownWindow({ onClose, zIndex, onFocus }) {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -12,12 +12,6 @@ export default function CountdownWindow({ onClose }) {
   });
 
   useEffect(() => {
-    // Target Date: Feb 28, 2026 12:00:00 PM CST (Chicago Time)
-    // We explicitly set the offset to -06:00 (CST) so that this specific moment in time
-    // is converted to a UTC timestamp.
-    // Date.now() returns the current UTC timestamp from the device.
-    // Calculating (Target UTC - Current UTC) ensures the countdown is the same duration
-    // for everyone in the world, regardless of their local timezone.
     const targetDate = new Date('2026-02-28T12:00:00-06:00').getTime();
 
     const interval = setInterval(() => {
@@ -50,14 +44,16 @@ export default function CountdownWindow({ onClose }) {
       title="count_dwn.exe"
       initialPosition={{ top: 320, right: 30 }}
       style={{ width: '300px', height: '100px' }}
-      zIndex={Z_INDEX.COUNTDOWN}
+      zIndex={zIndex || Z_INDEX.COUNTDOWN}
       resizable={true}
       onClose={onClose}
+      onFocus={onFocus}
+      dragAnywhere={true}
     >
       <div style={{
         background: '#fff',
         color: '#000',
-        width: '500px', // Explicitly match baseWidth
+        width: '500px',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',

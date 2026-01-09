@@ -1,22 +1,60 @@
 import React, { useState } from 'react'
-import { CodeEditorWindow, PixelLabWindow, DraggableLogo, DraggableArrow, CountdownWindow } from '../windows'
+import { CodeEditorWindow, PixelLabWindow, SuperHackathonBrosWindow, DraggableLogo, DraggableArrow, CountdownWindow } from '../windows'
 import DesktopIcons from '../DesktopIcons'
+
+import { Z_INDEX } from '../../constants';
 
 export default function Background({ children, pattern = 'scanlines', showCodeBoxes = true }) {
   const [showPixelLab, setShowPixelLab] = useState(true);
+  const [showSuperBros, setShowSuperBros] = useState(true);
   const [showCountdown, setShowCountdown] = useState(true);
 
+  const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super']);
+
+  const bringToFront = (id) => {
+    setWindowStack((prev) => {
+      if (prev[prev.length - 1] === id) return prev;
+      return [...prev.filter(winId => winId !== id), id];
+    });
+  };
+
+  const getZIndex = (id) => {
+     const index = windowStack.indexOf(id);
+     return Z_INDEX.WINDOWS_BASE + index;
+  };
+
   return (
-    <div style={wrapperStyle}>
+    <div style={wrapperStyle} className="no-scrollbar">
       <div style={getPatternStyle(pattern)} />
       <DesktopIcons />
       {showCodeBoxes && (
         <>
-          <CodeEditorWindow />
-          {showPixelLab && <PixelLabWindow onClose={() => setShowPixelLab(false)} />}
+          <CodeEditorWindow 
+            zIndex={getZIndex('code')} 
+            onFocus={() => bringToFront('code')}
+          />
+          {showPixelLab && (
+            <PixelLabWindow 
+              onClose={() => setShowPixelLab(false)} 
+              zIndex={getZIndex('pixel')}
+              onFocus={() => bringToFront('pixel')}
+            />
+          )}
+          {showSuperBros && (
+            <SuperHackathonBrosWindow 
+              onClose={() => setShowSuperBros(false)} 
+              zIndex={getZIndex('super')}
+              onFocus={() => bringToFront('super')}
+            />
+          )}
           <DraggableLogo />
           <DraggableArrow />
-          {showCountdown && <CountdownWindow onClose={() => setShowCountdown(false)} />}
+          {showCountdown && (
+            <CountdownWindow 
+              onClose={() => setShowCountdown(false)} 
+              zIndex={Z_INDEX.COUNTDOWN}
+            />
+          )}
         </>
       )}
       <div style={contentStyle}>

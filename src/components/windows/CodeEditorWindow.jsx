@@ -112,7 +112,7 @@ function TsIcon({ style }) {
   );
 }
 
-export default function CodeEditorWindow() {
+export default function CodeEditorWindow({ zIndex, onFocus, dragAnywhere = true }) {
   const getInitialSize = () => {
     if (typeof window === 'undefined') return { width: 480, height: 560 };
     const vw = window.innerWidth;
@@ -264,7 +264,7 @@ export default function CodeEditorWindow() {
 
   const containerStyle = {
     position: 'fixed',
-    zIndex: Z_INDEX.WINDOWS_ACTIVE,
+    zIndex: zIndex || Z_INDEX.WINDOWS_ACTIVE,
     width: size.width,
     height: size.height,
     ...(position ? { left: position.x, top: position.y } : { top: 360, left: 100 }),
@@ -274,7 +274,15 @@ export default function CodeEditorWindow() {
   const currentCode = codeFiles[activeIndex]?.code || '';
 
   return (
-    <div ref={containerRef} style={containerStyle} data-draggable-window>
+    <div 
+      ref={containerRef} 
+      style={containerStyle} 
+      data-draggable-window
+      onMouseDownCapture={() => onFocus && onFocus()}
+      onTouchStartCapture={() => onFocus && onFocus()}
+      onMouseDown={dragAnywhere ? handleMouseDown : undefined}
+      onTouchStart={dragAnywhere ? handleTouchStart : undefined}
+    >
       <div style={{
         display: 'flex',
         flexDirection: 'column',
@@ -288,8 +296,8 @@ export default function CodeEditorWindow() {
       }}>
         {/* Draggable header with tabs */}
         <div
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
+          onMouseDown={!dragAnywhere ? handleMouseDown : undefined}
+          onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
           style={{
             backgroundColor: VSCODE_COLORS.headerBg,
             flexShrink: 0,

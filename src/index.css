@@ -118,6 +118,15 @@ body::-webkit-scrollbar,
     display: none;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
 html, body, #root, #root > div, #root > div > div {
     scrollbar-width: none;
     -ms-overflow-style: none;

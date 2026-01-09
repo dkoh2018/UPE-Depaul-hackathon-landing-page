@@ -9,6 +9,8 @@ export default function DraggableWindow({
   zIndex = 50,
   resizable = true,
   onClose,
+  onFocus,
+  dragAnywhere = false,
 }) {
   const [position, setPosition] = useState(null);
   const [size, setSize] = useState(null);
@@ -207,12 +209,20 @@ export default function DraggableWindow({
   };
 
   return (
-    <div ref={windowRef} style={windowStyle} className={className}>
+    <div 
+      ref={windowRef} 
+      style={windowStyle} 
+      className={className}
+      onMouseDownCapture={() => onFocus && onFocus()}
+      onTouchStartCapture={() => onFocus && onFocus()}
+      onMouseDown={dragAnywhere ? handleMouseDown : undefined}
+      onTouchStart={dragAnywhere ? handleTouchStart : undefined}
+    >
       <div className="window" style={{ margin: 0, width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
         <div 
           className="title-bar"
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
+          onMouseDown={!dragAnywhere ? handleMouseDown : undefined}
+          onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
           onDoubleClick={handleReset}
           style={{ cursor: isDragging ? 'grabbing' : 'grab', flexShrink: 0 }}
         >

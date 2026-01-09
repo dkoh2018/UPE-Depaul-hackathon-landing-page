@@ -4,5 +4,6 @@ export { default as PixelLabWindow } from './PixelLabWindow';
 export { default as DraggableLogo } from './DraggableLogo';
 export { default as DraggableArrow } from './DraggableArrow';
 export { default as CountdownWindow } from './CountdownWindow';
+export { default as SuperHackathonBrosWindow } from './SuperHackathonBrosWindow';
 
 
