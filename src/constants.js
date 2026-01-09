@@ -3,6 +3,7 @@ export const Z_INDEX = {
   ARROW: 30,
   WINDOWS_BASE: 40,
   WINDOWS_ACTIVE: 45,
-  COUNTDOWN: 200,
+  COUNTDOWN: 95,
   LOGO: 90,
+  FORM: 100,
 };

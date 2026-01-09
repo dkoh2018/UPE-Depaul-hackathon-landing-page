@@ -12,7 +12,8 @@ export default function PixelLabWindow({ onClose, zIndex, onFocus }) {
       if (vw >= 1400) setWindowSize({ width: 550, height: 440 }); 
       else if (vw >= 1200) setWindowSize({ width: 500, height: 400 });
       else if (vw >= 992) setWindowSize({ width: 450, height: 360 });
-      else setWindowSize({ width: 400, height: 320 });
+      else if (vw >= 768) setWindowSize({ width: 400, height: 320 });
+      else setWindowSize({ width: 320, height: 256 });
     };
     calculateSize();
     window.addEventListener('resize', calculateSize);

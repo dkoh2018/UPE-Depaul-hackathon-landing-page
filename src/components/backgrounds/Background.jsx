@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { CodeEditorWindow, PixelLabWindow, SuperHackathonBrosWindow, DraggableLogo, DraggableArrow, CountdownWindow } from '../windows'
+import { CodeEditorWindow, PixelLabWindow, SuperHackathonBrosWindow, DraggableLogo, DraggableArrow, CountdownWindow, TextWindow } from '../windows'
 import DesktopIcons from '../DesktopIcons'
 
 import { Z_INDEX } from '../../constants';
@@ -8,6 +8,8 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const [showPixelLab, setShowPixelLab] = useState(true);
   const [showSuperBros, setShowSuperBros] = useState(true);
   const [showCountdown, setShowCountdown] = useState(true);
+  const [showTrashWindow, setShowTrashWindow] = useState(false);
+  const [showScheduleWindow, setShowScheduleWindow] = useState(false);
 
   const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super']);
 
@@ -17,6 +19,16 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       document.body.style.backgroundColor = '';
     };
   }, []);
+
+  const handleTrashClick = () => {
+    setShowTrashWindow(true);
+    bringToFront('trash');
+  };
+
+  const handleScheduleClick = () => {
+    setShowScheduleWindow(true);
+    bringToFront('schedule');
+  };
 
   const bringToFront = (id) => {
     setWindowStack((prev) => {
@@ -33,7 +45,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   return (
     <div style={wrapperStyle} className="no-scrollbar">
       <div style={getPatternStyle('noise')} />
-      <DesktopIcons />
+      <DesktopIcons onTrashClick={handleTrashClick} onScheduleClick={handleScheduleClick} />
       {showCodeBoxes && (
         <>
           <CodeEditorWindow 
@@ -56,6 +68,79 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           )}
           <DraggableLogo />
           <DraggableArrow />
+          {showTrashWindow && (
+            <TextWindow 
+              title="trash"
+              content="your code (jk)"
+              onClose={() => setShowTrashWindow(false)} 
+              zIndex={Z_INDEX.COUNTDOWN + 10}
+              onFocus={() => bringToFront('trash')}
+              width={300}
+              height={200}
+              initialPosition={{ 
+                top: Math.max(80, window.innerHeight * 0.15), 
+                left: Math.max(20, (window.innerWidth - 300) / 2 - 50) 
+              }}
+            />
+          )}
+          {showScheduleWindow && (
+            <TextWindow 
+              title="schedule.txt"
+              content={`=======================================
+DEMONHACKS 2026
+SCHEDULE
+THIS IS A TEST SCHEDULE THIS IS A TEST I REPEAT THIS IS A TEST
+=======================================
+
+FRIDAY, FEBRUARY 28, 2026
+---------------------------------------
+  |
+  o  12:00 PM - 1:00 PM
+  |  Opening & Introductions
+  |
+  o  1:00 PM - 11:00 PM
+  |  Hacking Time!
+  |
+  o  11:00 PM - 12:00 AM
+  |  Late Night Coding
+  |  (or take a nap!)
+  |
+---------------------------------------
+SATURDAY, MARCH 1, 2026
+---------------------------------------
+  |
+  o  12:00 AM - 8:00 AM
+  |  Code or Sleep
+  |  (your choice!)
+  |
+  o  8:00 AM - 9:00 AM
+  |  Breakfast
+  |
+  o  9:00 AM - 10:00 AM
+  |  Final Coding Sprint
+  |
+  o  10:00 AM - 11:00 AM
+  |  Project Submissions
+  |
+  o  11:00 AM - 11:30 AM
+  |  Judging & Demos
+  |
+  o  11:30 AM - 12:00 PM
+  |  Awards Ceremony
+  |
+=======================================`}
+              onClose={() => setShowScheduleWindow(false)} 
+              zIndex={Z_INDEX.COUNTDOWN + 11}
+              onFocus={() => bringToFront('schedule')}
+              width={450}
+              height={600}
+              fontSize={13}
+              initialPosition={{ 
+                top: Math.max(120, window.innerHeight * 0.15 + 60), 
+                left: Math.max(20, (window.innerWidth - 450) / 2 + 50) 
+              }}
+            />
+          )}
           {showCountdown && (
             <CountdownWindow 
               onClose={() => setShowCountdown(false)} 

@@ -362,3 +362,31 @@ input:-webkit-autofill:focus {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+/* Fix for close button - ensure white background and consistent sizing */
+.title-bar button.close,
+.title-bar button,
+button.close {
+  background-color: #fff !important;
+  background: #fff !important;
+  border: 4px solid #000 !important;
+  cursor: pointer;
+  display: block;
+  height: 40px !important;
+  width: 40px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  position: relative;
+  transform: scale(0.5) !important;
+  transform-origin: center !important;
+  box-shadow: none !important;
+}
+
+/* Ensure the X or symbols inside are correctly spaced if they exist */
+.title-bar button.close::before,
+.title-bar button.close::after,
+button.close::before,
+button.close::after {
+  /* System.css handles this, but let's ensure they are visible when active or needed */
+}

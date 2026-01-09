@@ -97,7 +97,7 @@ const TrashIcon = () => (
     </svg>
 );
 
-const DesktopIcons = () => {
+const DesktopIcons = ({ onTrashClick, onScheduleClick }) => {
     return (
         <div 
             className="desktop-icons"
@@ -125,10 +125,12 @@ const DesktopIcons = () => {
             <DesktopIcon 
                 icon={<DocumentIcon />} 
                 label="Schedule.txt" 
+                onClick={onScheduleClick}
             />
             <DesktopIcon 
                 icon={<TrashIcon />} 
                 label="Trash" 
+                onClick={onTrashClick}
             />
         </div>
     );

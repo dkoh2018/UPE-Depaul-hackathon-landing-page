@@ -116,6 +116,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, dragAnywhere = true 
   const getInitialSize = () => {
     if (typeof window === 'undefined') return { width: 480, height: 560 };
     const vw = window.innerWidth;
+    if (vw < 768) return { width: 335, height: 410 };
     if (vw >= 1400) return { width: 600, height: 700 };
     if (vw >= 1200) return { width: 550, height: 642 };
     if (vw >= 992) return { width: 520, height: 607 };

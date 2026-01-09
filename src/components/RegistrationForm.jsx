@@ -4,12 +4,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { registrationSchema } from '../lib/formSchema';
 import { FORM_FIELDS, FORM_ACTION_URL, GRAD_YEAR_OPTIONS, TRACK_OPTIONS, TEAM_STATUS_OPTIONS, DIETARY_OPTIONS } from '../utils/formConfig';
 import { Field, FieldLabel, FieldError, FieldDescription, Input, Select, RadioItem, CheckboxItem, Button } from './ui/Field';
+import { Z_INDEX } from '../constants';
 
 const RegistrationForm = () => {
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [showAbout, setShowAbout] = useState(true);
     const [showForm, setShowForm] = useState(true);
+    const [showHeader, setShowHeader] = useState(true);
+    const [showNotice, setShowNotice] = useState(true);
     const iframeRef = useRef(null);
     
     const [teammates, setTeammates] = useState([
@@ -99,7 +102,7 @@ const RegistrationForm = () => {
 
     if (submitted) {
         return (
-            <div style={{ maxWidth: '590px', margin: '40px auto', padding: '0 16px', pointerEvents: 'none', position: 'relative', zIndex: 100 }}>
+            <div style={{ maxWidth: '590px', margin: '40px auto', padding: '0 16px', pointerEvents: 'none', position: 'relative', zIndex: Z_INDEX.FORM }}>
                 <div className="standard-dialog" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '20px' }}>
                     <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '5px' }}>
                         DEMONHACKS 2026
@@ -126,14 +129,24 @@ const RegistrationForm = () => {
     }
 
     return (
-        <div style={{ 
-            maxWidth: '590px', 
-            margin: '0 auto', 
-            padding: '20px 16px 60px 16px',
-            position: 'relative',
-            zIndex: 100,
-            pointerEvents: 'none',
-        }}>
+        <>
+            <style>
+                {`
+                @media (max-width: 768px) {
+                    .registration-form-wrapper {
+                        max-width: 82% !important;
+                    }
+                }
+                `}
+            </style>
+            <div className="registration-form-wrapper" style={{ 
+                maxWidth: '590px', 
+                margin: '0 auto', 
+                padding: '20px 16px 60px 16px',
+                position: 'relative',
+                zIndex: Z_INDEX.FORM,
+                pointerEvents: 'none',
+            }}>
             <iframe 
                 name="hidden_iframe" 
                 ref={iframeRef}
@@ -159,13 +172,27 @@ const RegistrationForm = () => {
                 ))}
             </form>
 
-            <div className="standard-dialog" style={{ position: 'relative', textAlign: 'center', padding: '40px 20px', marginBottom: '0', pointerEvents: 'auto' }}>
-                <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '5px' }}>
-                    DEMONHACKS 2026
-                </h1>
-                <p style={{ marginTop: '12px', marginBottom: 0, fontSize: '14px' }}>
-                    @ DePaul University • Feb 28 - Mar 1, 2026
-                </p>
+            {showHeader && (
+                <div className="standard-dialog" style={{ position: 'relative', textAlign: 'center', padding: '40px 20px', marginBottom: '0', pointerEvents: 'auto' }}>
+                    <button 
+                        className="close"
+                        onClick={() => setShowHeader(false)}
+                        style={{
+                            position: 'absolute',
+                            top: '2px',
+                            left: '8px',
+                            zIndex: 10,
+                            transformOrigin: 'top left', // Use top-left to make positioning easier
+                        }}
+                        aria-label="Close header"
+                    >
+                    </button>
+                    <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '5px' }}>
+                        DEMONHACKS 2026
+                    </h1>
+                    <p style={{ marginTop: '12px', marginBottom: 0, fontSize: '14px' }}>
+                        @ DePaul University • Feb 28 - Mar 1, 2026
+                    </p>
                 <div style={{
                     position: 'absolute',
                     bottom: '8px',
@@ -209,12 +236,13 @@ const RegistrationForm = () => {
                         animation: 'pixel-blink 1.2s infinite 0.6s',
                         position: 'relative',
                         top: '-2px'
-                    }}>+</span>
+                    }}> +</span>
                 </div>
             </div>
+            )}
 
             {showAbout && (
-                <div className="window" style={{ marginTop: '-2px', marginBottom: '0', pointerEvents: 'auto', position: 'relative' }}>
+                <div className="window" style={{ marginTop: showHeader ? '-2px' : '20px', marginBottom: '0', pointerEvents: 'auto', position: 'relative' }}>
                     <div className="title-bar">
                         <button 
                             aria-label="Close" 
@@ -240,7 +268,7 @@ const RegistrationForm = () => {
             )}
 
             {showForm ? (
-                <div className="window" style={{ marginTop: '-2px', marginBottom: '40px', pointerEvents: 'auto', position: 'relative' }}>
+                <div className="window" style={{ marginTop: showHeader ? '-2px' : (showAbout ? '-2px' : '20px'), marginBottom: '40px', pointerEvents: 'auto', position: 'relative' }}>
                     <div className="title-bar">
                         <button 
                             aria-label="Close" 
@@ -432,26 +460,28 @@ const RegistrationForm = () => {
                     </div>
                 </div>
             ) : (
-                <div className="window" style={{ marginTop: '-2px', marginBottom: '40px', pointerEvents: 'auto' }}>
-                    <div className="title-bar">
-                        <button 
-                            aria-label="Close" 
-                            className="close"
-                            disabled
-                            style={{ visibility: 'hidden' }}
-                        ></button>
-                        <h1 className="title">notice.txt</h1>
-                        <button aria-label="Resize" disabled className="hidden"></button>
+                showNotice && (
+                    <div className="window" style={{ marginTop: showHeader ? '-2px' : (showAbout ? '-2px' : '20px'), marginBottom: '40px', pointerEvents: 'auto' }}>
+                        <div className="title-bar">
+                            <button 
+                                aria-label="Close" 
+                                className="close"
+                                onClick={() => setShowNotice(false)}
+                            ></button>
+                            <h1 className="title">notice.txt</h1>
+                            <button aria-label="Resize" disabled className="hidden"></button>
+                        </div>
+                        <div className="separator"></div>
+                        <div style={{ padding: '30px', textAlign: 'center', background: '#fff' }}>
+                            <p style={{ fontSize: '14px', color: '#666', margin: 0 }}>
+                                Please refresh the page to get the form again.
+                            </p>
+                        </div>
                     </div>
-                    <div className="separator"></div>
-                    <div style={{ padding: '30px', textAlign: 'center', background: '#fff' }}>
-                        <p style={{ fontSize: '14px', color: '#666', margin: 0 }}>
-                            Please refresh the page to get the form again.
-                        </p>
-                    </div>
-                </div>
+                )
             )}
         </div>
+        </>
     );
 };
 
