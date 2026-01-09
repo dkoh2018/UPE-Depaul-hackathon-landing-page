@@ -128,6 +128,11 @@ const DesktopIcons = ({ onTrashClick, onScheduleClick }) => {
                 onClick={() => window.open('https://upe.cdm.depaul.edu/events/', '_blank')}
             />
             <DesktopIcon 
+                icon={<FolderIcon />} 
+                label="Depaul CSS" 
+                onClick={() => window.open('https://www.instagram.com/depaulcss/', '_blank')}
+            />
+            <DesktopIcon 
                 icon={<DocumentIcon />} 
                 label="Schedule.txt" 
                 onClick={onScheduleClick}
