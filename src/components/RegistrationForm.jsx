@@ -262,7 +262,7 @@ const RegistrationForm = () => {
                             borderRadius: '2px'
                         }}>
                             <span style={{ fontSize: '11px', color: '#555' }}>
-                                Not a DePaul student? <strong>No problem.</strong> All university & graduate students are welcome!
+                                Not a DePaul student? <strong>No problem.</strong> All university <strong>and</strong> graduate students are welcome!
                             </span>
                         </div>
                         <div style={{ borderTop: '1px solid #ccc', padding: '16px 0 0 0' }}>
@@ -308,7 +308,7 @@ const RegistrationForm = () => {
                                     <Field style={{ marginBottom: '16px' }}>
                                         <FieldLabel htmlFor="email" required>University Email</FieldLabel>
                                         <Input {...field} id="email" type="email" placeholder="student@university.edu" style={{ width: '100%' }} />
-                                        <FieldDescription>Valid for ALL .edu addresses—all colleges & grad programs welcome!</FieldDescription>
+                                        <FieldDescription>Valid for ALL .edu addresses—all colleges <strong>and</strong> grad programs welcome!</FieldDescription>
                                         <FieldError message={fieldState.error?.message} />
                                     </Field>
                                 )}
