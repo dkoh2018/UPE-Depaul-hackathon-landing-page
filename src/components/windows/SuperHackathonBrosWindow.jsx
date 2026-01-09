@@ -21,7 +21,7 @@ export default function SuperHackathonBrosWindow({ onClose, zIndex, onFocus }) {
   return (
     <DraggableWindow
       title="super_hackathon_bros.exe"
-      initialPosition={{ top: 110, right: 165 }}
+      initialPosition={{ top: 210, right: 165 }}
       style={{ width: `${windowSize.width}px`, height: `${windowSize.height}px` }}
       zIndex={zIndex || Z_INDEX.WINDOWS_BASE}
       onFocus={onFocus}
@@ -37,8 +37,35 @@ export default function SuperHackathonBrosWindow({ onClose, zIndex, onFocus }) {
         width: '100%',
         height: '100%',
         overflow: 'hidden',
+        position: 'relative'
       }}>
         <SuperHackathonBros />
+        
+        <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+            zIndex: 999,
+            background: `
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06))
+            `,
+            backgroundSize: '100% 2px, 3px 100%',
+            boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5)', 
+        }} />
+        <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+            zIndex: 1000,
+            background: 'radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%)'
+        }} />
       </div>
     </DraggableWindow>
   );

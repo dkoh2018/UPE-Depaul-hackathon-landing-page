@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CodeEditorWindow, PixelLabWindow, SuperHackathonBrosWindow, DraggableLogo, DraggableArrow, CountdownWindow } from '../windows'
 import DesktopIcons from '../DesktopIcons'
 
@@ -10,6 +10,13 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const [showCountdown, setShowCountdown] = useState(true);
 
   const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super']);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = '#c0c0c0';
+    return () => {
+      document.body.style.backgroundColor = '';
+    };
+  }, []);
 
   const bringToFront = (id) => {
     setWindowStack((prev) => {
@@ -25,7 +32,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
 
   return (
     <div style={wrapperStyle} className="no-scrollbar">
-      <div style={getPatternStyle(pattern)} />
+      <div style={getPatternStyle('noise')} />
       <DesktopIcons />
       {showCodeBoxes && (
         <>
@@ -67,7 +74,9 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
 const wrapperStyle = {
   position: 'relative',
   minHeight: '100vh',
+  minWidth: '100vw',
   height: '100vh',
+  width: '100%',
   overflowY: 'auto',
   overflowX: 'hidden',
   backgroundColor: '#c0c0c0',
@@ -100,7 +109,7 @@ function getPatternStyle(pattern) {
       return {
         ...baseStyle,
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        opacity: 0.08,
+        opacity: 0.20,
       }
     case 'grid':
       return {

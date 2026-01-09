@@ -159,17 +159,62 @@ const RegistrationForm = () => {
                 ))}
             </form>
 
-            <div className="standard-dialog" style={{ textAlign: 'center', padding: '40px 20px', marginBottom: '0', pointerEvents: 'auto' }}>
+            <div className="standard-dialog" style={{ position: 'relative', textAlign: 'center', padding: '40px 20px', marginBottom: '0', pointerEvents: 'auto' }}>
                 <h1 className="font-unique" style={{ fontSize: 'clamp(50px, 12vw, 80px)', margin: 0, lineHeight: 1, letterSpacing: '5px' }}>
                     DEMONHACKS 2026
                 </h1>
                 <p style={{ marginTop: '12px', marginBottom: 0, fontSize: '14px' }}>
                     @ DePaul University • Feb 28 - Mar 1, 2026
                 </p>
+                <div style={{
+                    position: 'absolute',
+                    bottom: '8px',
+                    left: '12px',
+                    fontSize: '10px',
+                    fontFamily: '"Courier New", monospace',
+                    color: 'rgba(0,0,0,0.8)',
+                    pointerEvents: 'none',
+                    userSelect: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                }}>
+                    {}
+                    <style>
+                        {`
+                        @keyframes pixel-blink {
+                            0%, 100% { opacity: 0; transform: scale(0.5); }
+                            50% { opacity: 1; transform: scale(1.2); }
+                        }
+                        `}
+                    </style>
+                    
+                    {}
+                    <span style={{ 
+                        color: '#333333', 
+                        fontSize: '14px', 
+                        fontWeight: 'bold',
+                        animation: 'pixel-blink 1.2s infinite',
+                        position: 'relative',
+                        top: '-2px'
+                    }}>+</span>
+
+                    (yes, you can close the windows)
+
+                    {}
+                    <span style={{ 
+                        color: '#333333', 
+                        fontSize: '12px', 
+                        fontWeight: 'bold',
+                        animation: 'pixel-blink 1.2s infinite 0.6s',
+                        position: 'relative',
+                        top: '-2px'
+                    }}>+</span>
+                </div>
             </div>
 
             {showAbout && (
-                <div className="window" style={{ marginTop: '-2px', marginBottom: '0', pointerEvents: 'auto' }}>
+                <div className="window" style={{ marginTop: '-2px', marginBottom: '0', pointerEvents: 'auto', position: 'relative' }}>
                     <div className="title-bar">
                         <button 
                             aria-label="Close" 
@@ -195,7 +240,7 @@ const RegistrationForm = () => {
             )}
 
             {showForm ? (
-                <div className="window" style={{ marginTop: '-2px', marginBottom: '40px', pointerEvents: 'auto' }}>
+                <div className="window" style={{ marginTop: '-2px', marginBottom: '40px', pointerEvents: 'auto', position: 'relative' }}>
                     <div className="title-bar">
                         <button 
                             aria-label="Close" 

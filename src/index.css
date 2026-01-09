@@ -217,7 +217,7 @@ input:-webkit-autofill:focus {
     }
 }
 
-/* Removed zoom: 1.1 - it caused font clashing during window resize */
+
 
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
