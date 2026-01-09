@@ -177,7 +177,9 @@ SATURDAY, MARCH 1, 2026
   o  11:30 AM - 12:00 PM
   |  Awards Ceremony
   |
-=======================================`}
+  +-------------------------------------+
+  |          END OF SCHEDULE            |
+  +-------------------------------------+`}
               onClose={() => setShowScheduleWindow(false)} 
               zIndex={Z_INDEX.COUNTDOWN + 11}
               onFocus={() => bringToFront('schedule')}
