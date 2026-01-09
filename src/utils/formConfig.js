@@ -14,14 +14,14 @@ export const GRAD_YEAR_OPTIONS = ["2026", "2027", "2028", "2029", "2030"];
 
 export const TRACK_OPTIONS = [
     {
-        title: "Smart City & Infrastructure",
+        title: "Smart City and Infrastructure",
         description: "Focus on transportation, energy, traffic, connectivity in the Loop",
-        value: "Smart City & Infrastructure (Focus on transportation, energy, traffic, connectivity in the Loop)"
+        value: "Smart City and Infrastructure (Focus on transportation, energy, traffic, connectivity in the Loop)"
     },
     {
-        title: "Community & Social Impact",
+        title: "Community and Social Impact",
         description: "Focus on accessibility, public safety, local businesses, or homelessness",
-        value: "Community & Social Impact (Focus on accessibility, public safety, local businesses, or homelessness)"
+        value: "Community and Social Impact (Focus on accessibility, public safety, local businesses, or homelessness)"
     }
 ];
 
