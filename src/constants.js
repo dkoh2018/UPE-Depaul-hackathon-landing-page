@@ -4,5 +4,5 @@ export const Z_INDEX = {
   WINDOWS_BASE: 40,
   WINDOWS_ACTIVE: 45,
   COUNTDOWN: 200,
-  LOGO: 300,
+  LOGO: 90,
 };
