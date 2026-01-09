@@ -135,59 +135,57 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
               content={`=======================================
 !!! DRAFT - TESTING ONLY !!!
 !!! NOT FINAL !!!
-
 DEMONHACKS 2026
 OFFICIAL SCHEDULE
 =======================================
-
-  +-------------------------------------+
-  |      FRIDAY, FEBRUARY 28, 2026      |
-  +-------------------------------------+
+  +--------------------------------+
+  |      FRIDAY, FEBRUARY 28, 2026             |
+  +--------------------------------+
   |
-  o  11:30 AM - 12:30 PM
-  |  Check-in & Registration
-  |
-  o  12:30 PM - 1:00 PM
-  |  Opening Ceremony
-  |
-  o  1:00 PM - 2:30 PM
-  |  Team Formation & Lunch
-  |
-  o  2:30 PM
-  |  >>> HACKING BEGINS <<<
-  |
-  |  [ 4.5 HOURS UNTIL DINNER ]
-  |
-  o  7:00 PM - 8:30 PM
-  |  Dinner Break (Off-site)
-  |
-  |  [ 3 HOURS UNTIL MIDNIGHT ]
-  |
-  o  11:30 PM - 12:00 AM
-  |  Midnight Checkpoint
-  |
-  +-------------------------------------+
-  |       SATURDAY, MARCH 1, 2026       |
-  +-------------------------------------+
-  |
-  o  12:00 AM - 8:00 AM
-  |  [ 8 HOURS OVERNIGHT GRIND ]
-  |
-  o  8:00 AM - 9:30 AM
-  |  Morning Coffee Run
-  |
-  o  9:30 AM - 10:30 AM
-  |  Upload & Polish
-  |
-  o  10:30 AM
-  |  Submit code
-  |
-  o  11:30 AM - 12:00 PM
-  |  Awards & Closing
-  |
-  +-------------------------------------+
-  |           END OF SCHEDULE           |
-  +-------------------------------------+
+  o    11:30 AM - 12:30 PM
+  |    Check-in & Registration
+  |  
+  o    12:30 PM - 1:00 PM
+  |    Opening Ceremony
+  |  
+  o    1:00 PM - 2:30 PM
+  |    Team Formation & Lunch
+  |  
+  o    2:30 PM
+  |    >>> HACKING BEGINS <<<
+  |  
+  |    [ 4.5 HOURS UNTIL DINNER ]
+  |  
+  o    7:00 PM - 8:30 PM
+  |    Dinner Break (Off-site)
+  |  
+  |    [ 3 HOURS UNTIL MIDNIGHT ]
+  |  
+  o    11:30 PM - 12:00 AM
+  |    Midnight Checkpoint
+  |  
+  +  -----------------------------+
+  |         SATURDAY, MARCH 1, 2026       |
+  +  -----------------------------+
+  |  
+  o    12:00 AM - 8:00 AM
+  |    [ 8 HOURS OVERNIGHT GRIND ]
+  |  
+  o    8:00 AM - 9:30 AM
+  |    Morning Coffee Run
+  |  
+  o    9:30 AM - 10:30 AM
+  |    Upload & Polish
+  |  
+  o    10:30 AM
+  |    Submit code
+  |  
+  o    11:30 AM - 12:00 PM
+  |    Awards & Closing
+  |  
+  +-----------------------------+
+  |           END OF SCHEDULE                      |
+  +-----------------------------+
 
 
 `}
