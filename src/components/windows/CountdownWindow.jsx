@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DraggableWindow from './DraggableWindow';
 import { Z_INDEX } from '../../constants';
 
-export default function CountdownWindow() {
+export default function CountdownWindow({ onClose }) {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -52,6 +52,7 @@ export default function CountdownWindow() {
       style={{ width: '300px', height: '100px' }}
       zIndex={Z_INDEX.COUNTDOWN}
       resizable={true}
+      onClose={onClose}
     >
       <div style={{
         background: '#fff',

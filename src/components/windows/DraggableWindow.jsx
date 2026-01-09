@@ -8,6 +8,7 @@ export default function DraggableWindow({
   className = '',
   zIndex = 50,
   resizable = true,
+  onClose,
 }) {
   const [position, setPosition] = useState(null);
   const [size, setSize] = useState(null);
@@ -215,7 +216,13 @@ export default function DraggableWindow({
           onDoubleClick={handleReset}
           style={{ cursor: isDragging ? 'grabbing' : 'grab', flexShrink: 0 }}
         >
-          <button aria-label="Close" className="close"></button>
+          <button 
+            aria-label="Close" 
+            className="close" 
+            onClick={onClose}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+          ></button>
           <h1 className="title" style={{ fontSize: '12px' }}>{title}</h1>
           <button aria-label="Resize" disabled className="hidden"></button>
         </div>

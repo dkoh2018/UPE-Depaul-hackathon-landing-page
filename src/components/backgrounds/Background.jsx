@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CodeEditorWindow, PixelLabWindow, DraggableLogo, DraggableArrow, CountdownWindow } from '../windows'
 import DesktopIcons from '../DesktopIcons'
 
 export default function Background({ children, pattern = 'scanlines', showCodeBoxes = true }) {
+  const [showPixelLab, setShowPixelLab] = useState(true);
+  const [showCountdown, setShowCountdown] = useState(true);
+
   return (
     <div style={wrapperStyle}>
       <div style={getPatternStyle(pattern)} />
@@ -10,10 +13,10 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       {showCodeBoxes && (
         <>
           <CodeEditorWindow />
-          <PixelLabWindow />
+          {showPixelLab && <PixelLabWindow onClose={() => setShowPixelLab(false)} />}
           <DraggableLogo />
           <DraggableArrow />
-          <CountdownWindow />
+          {showCountdown && <CountdownWindow onClose={() => setShowCountdown(false)} />}
         </>
       )}
       <div style={contentStyle}>

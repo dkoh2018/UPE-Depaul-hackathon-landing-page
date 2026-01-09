@@ -3,7 +3,7 @@ import PixelCharacters from '../PixelCharacters';
 import { Z_INDEX } from '../../constants';
 import DraggableWindow from './DraggableWindow';
 
-export default function PixelLabWindow() {
+export default function PixelLabWindow({ onClose }) {
   const [windowSize, setWindowSize] = useState({ width: 500, height: 404 });
   
   useEffect(() => {
@@ -25,6 +25,7 @@ export default function PixelLabWindow() {
 
       zIndex={Z_INDEX.WINDOWS_BASE}
       resizable={true}
+      onClose={onClose}
     >
       <div style={{ 
         background: '#d4d0c8', 
