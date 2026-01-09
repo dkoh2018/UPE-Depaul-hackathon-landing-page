@@ -261,7 +261,7 @@ const RegistrationForm = () => {
                             border: '1px inset #808080', 
                             borderRadius: '2px'
                         }}>
-                            <span style={{ fontSize: '11px', color: '#555' }}>
+                            <span style={{ fontSize: '11px', color: '#333' }}>
                                 Not a DePaul student? <strong>No problem.</strong> All university <strong>and</strong> graduate students are welcome!
                             </span>
                         </div>
