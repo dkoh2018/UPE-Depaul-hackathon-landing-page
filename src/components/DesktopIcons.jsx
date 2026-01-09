@@ -115,7 +115,7 @@ const DesktopIcons = ({ onTrashClick, onScheduleClick }) => {
             <DesktopIcon 
                 icon={<HardDriveIcon />} 
                 label="DePaul HD" 
-                onClick={() => window.open('https://www.depaul.edu/hello/Pages/ugrad-info.aspx', '_blank')}
+                onClick={() => window.open('https://www.cdm.depaul.edu/Pages/default.aspx', '_blank')}
             />
             <DesktopIcon 
                 icon={<FolderIcon />} 
