@@ -125,7 +125,7 @@ const DesktopIcons = ({ onTrashClick, onScheduleClick }) => {
             <DesktopIcon 
                 icon={<FolderIcon />} 
                 label="UPE" 
-                onClick={() => window.open('https://upe.cdm.depaul.edu/events/', '_blank')}
+                onClick={() => window.open('https://www.instagram.com/upe.depaul/?hl=en', '_blank')}
             />
             <DesktopIcon 
                 icon={<FolderIcon />} 
