@@ -112,11 +112,11 @@ function TsIcon({ style }) {
   );
 }
 
-export default function CodeEditorWindow({ zIndex, onFocus, dragAnywhere = true }) {
+export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dragAnywhere = true }) {
   const getInitialSize = () => {
     if (typeof window === 'undefined') return { width: 480, height: 560 };
     const vw = window.innerWidth;
-    if (vw < 768) return { width: 335, height: 410 };
+    if (vw < 500) return { width: 250, height: 190 };
     if (vw >= 1400) return { width: 600, height: 700 };
     if (vw >= 1200) return { width: 550, height: 642 };
     if (vw >= 992) return { width: 520, height: 607 };
@@ -147,7 +147,9 @@ export default function CodeEditorWindow({ zIndex, onFocus, dragAnywhere = true 
 
   const handleMouseDown = useCallback((e) => {
     if (e.button !== 0) return;
-    e.preventDefault();
+    
+    // Don't drag if clicking buttons or specific interactive areas
+    if (e.target.closest('button')) return;
     
     const rect = containerRef.current.getBoundingClientRect();
     const currentX = position?.x ?? rect.left;
@@ -268,7 +270,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, dragAnywhere = true 
     zIndex: zIndex || Z_INDEX.WINDOWS_ACTIVE,
     width: size.width,
     height: size.height,
-    ...(position ? { left: position.x, top: position.y } : { top: 360, left: 100 }),
+    ...(position ? { left: position.x, top: position.y } : (initialPosition || (window.innerWidth < 500 ? { top: '65%', left: '2%' } : { top: '45%', left: '10%' }))),
   };
 
 

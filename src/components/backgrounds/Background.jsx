@@ -12,6 +12,52 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const [showScheduleWindow, setShowScheduleWindow] = useState(false);
 
   const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super']);
+  const [windowPositions, setWindowPositions] = useState({});
+
+  useEffect(() => {
+    const calculateLayout = () => {
+      const vw = window.innerWidth;
+      const isMobile = vw < 500;
+      
+      // Define heights based on component logic
+      let superHeight, labHeight;
+      const countdownHeight = 100;
+
+      if (isMobile) {
+        superHeight = 190;
+        labHeight = 224;
+      } else {
+        if (vw >= 1400) { superHeight = 250; labHeight = 320; }
+        else if (vw >= 1200) { superHeight = 230; labHeight = 280; }
+        else if (vw >= 992) { superHeight = 210; labHeight = 256; }
+        else { superHeight = 190; labHeight = 224; }
+      }
+
+      // Calculate vertical stack
+      const startTop = isMobile ? 120 : 210;
+      const gap = 55; // Further increased space between windows
+
+      const rightMargin = isMobile ? '5%' : '8%';
+
+      const superPos = { top: startTop, right: rightMargin };
+      const countdownPos = { top: startTop + superHeight + gap, right: rightMargin };
+      const labPos = { top: startTop + superHeight + gap + countdownHeight + gap, right: rightMargin };
+
+      // Code Editor on the left
+      const codePos = isMobile ? { top: '50%', left: '2%' } : { top: '30%', left: '5%' };
+
+      setWindowPositions({
+        super: superPos,
+        countdown: countdownPos,
+        pixel: labPos,
+        code: codePos
+      });
+    };
+
+    calculateLayout();
+    window.addEventListener('resize', calculateLayout);
+    return () => window.removeEventListener('resize', calculateLayout);
+  }, []);
 
   useEffect(() => {
     document.body.style.backgroundColor = '#c0c0c0';
@@ -51,12 +97,14 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           <CodeEditorWindow 
             zIndex={getZIndex('code')} 
             onFocus={() => bringToFront('code')}
+            initialPosition={windowPositions.code}
           />
           {showPixelLab && (
             <PixelLabWindow 
               onClose={() => setShowPixelLab(false)} 
               zIndex={getZIndex('pixel')}
               onFocus={() => bringToFront('pixel')}
+              initialPosition={windowPositions.pixel}
             />
           )}
           {showSuperBros && (
@@ -64,6 +112,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
               onClose={() => setShowSuperBros(false)} 
               zIndex={getZIndex('super')}
               onFocus={() => bringToFront('super')}
+              initialPosition={windowPositions.super}
             />
           )}
           <DraggableLogo />
@@ -145,6 +194,7 @@ SATURDAY, MARCH 1, 2026
             <CountdownWindow 
               onClose={() => setShowCountdown(false)} 
               zIndex={Z_INDEX.COUNTDOWN}
+              initialPosition={windowPositions.countdown}
             />
           )}
         </>

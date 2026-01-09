@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DraggableWindow from './DraggableWindow';
 import { Z_INDEX } from '../../constants';
 
-export default function CountdownWindow({ onClose, zIndex, onFocus }) {
+export default function CountdownWindow({ onClose, zIndex, onFocus, initialPosition }) {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -42,7 +42,7 @@ export default function CountdownWindow({ onClose, zIndex, onFocus }) {
   return (
     <DraggableWindow
       title="count_dwn.exe"
-      initialPosition={{ top: 320, right: 30 }}
+      initialPosition={initialPosition || (window.innerWidth < 500 ? { top: '5%', right: '2%' } : { top: '40%', right: '3%' })}
       style={{ width: '300px', height: '100px' }}
       zIndex={zIndex || Z_INDEX.COUNTDOWN}
       resizable={true}

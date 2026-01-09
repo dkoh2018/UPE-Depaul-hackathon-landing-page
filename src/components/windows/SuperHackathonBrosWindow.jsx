@@ -3,7 +3,7 @@ import SuperHackathonBros from '../SuperHackathonBros';
 import { Z_INDEX } from '../../constants';
 import DraggableWindow from './DraggableWindow';
 
-export default function SuperHackathonBrosWindow({ onClose, zIndex, onFocus }) {
+export default function SuperHackathonBrosWindow({ onClose, zIndex, onFocus, initialPosition }) {
   const [windowSize, setWindowSize] = useState({ width: 500, height: 404 });
   
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function SuperHackathonBrosWindow({ onClose, zIndex, onFocus }) {
   return (
     <DraggableWindow
       title="super_hackathon_bros.exe"
-      initialPosition={{ top: 210, right: 165 }}
+      initialPosition={initialPosition || (window.innerWidth < 500 ? { top: '10%', left: '2%' } : { top: '25%', right: '12%' })}
       style={{ width: `${windowSize.width}px`, height: `${windowSize.height}px` }}
       zIndex={zIndex || Z_INDEX.WINDOWS_BASE}
       onFocus={onFocus}

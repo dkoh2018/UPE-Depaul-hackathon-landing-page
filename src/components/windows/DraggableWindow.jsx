@@ -160,6 +160,35 @@ export default function DraggableWindow({
     setIsResizing(false);
   }, []);
 
+  // Clamping logic for resize
+  useEffect(() => {
+    if (!windowRef.current || !position) return;
+
+    const handleResize = () => {
+      const rect = windowRef.current.getBoundingClientRect();
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      let newX = position.x;
+      let newY = position.y;
+
+      // Only clamp if the window is actually outside the viewport
+      if (rect.right > vw) {
+        newX = Math.max(-100, vw - rect.width);
+      }
+      if (rect.bottom > vh) {
+        newY = Math.max(0, vh - rect.height);
+      }
+
+      if (newX !== position.x || newY !== position.y) {
+        setPosition({ x: newX, y: newY });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [position]);
+
   useEffect(() => {
     if (isDragging || isResizing) {
       document.addEventListener('mousemove', handleMouseMove);
@@ -197,13 +226,20 @@ export default function DraggableWindow({
   const windowStyle = {
     position: 'fixed',
     zIndex,
-    ...restStyle,  // Apply other styles first
+    ...restStyle,
     ...(position ? {
       left: position.x,
       top: position.y,
       bottom: 'auto',
       right: 'auto',
-    } : initialPosition),
+    } : {
+      ...initialPosition,
+      // Ensure percentage values are handled correctly by CSS
+      top: typeof initialPosition.top === 'number' ? `${initialPosition.top}px` : initialPosition.top,
+      left: typeof initialPosition.left === 'number' ? `${initialPosition.left}px` : initialPosition.left,
+      bottom: typeof initialPosition.bottom === 'number' ? `${initialPosition.bottom}px` : initialPosition.bottom,
+      right: typeof initialPosition.right === 'number' ? `${initialPosition.right}px` : initialPosition.right,
+    }),
     width: size?.width ?? styleWidth ?? 400,
     height: size?.height ?? styleHeight ?? 300,
   };
