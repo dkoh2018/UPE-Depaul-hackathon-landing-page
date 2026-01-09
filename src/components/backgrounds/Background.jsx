@@ -186,7 +186,7 @@ OFFICIAL SCHEDULE
   |  Awards & Closing
   |
   +-------------------------------------+
-  |          END OF SCHEDULE            |
+  |           END OF SCHEDULE           |
   +-------------------------------------+
 
 

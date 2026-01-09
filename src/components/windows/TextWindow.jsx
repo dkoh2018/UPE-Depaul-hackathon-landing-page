@@ -23,6 +23,7 @@ export default function TextWindow({ title, content, onClose, zIndex, onFocus, w
         fontSize: `${fontSize}px`,
         lineHeight: '1.6',
         whiteSpace: 'pre-wrap',
+        fontFamily: '"Courier New", Courier, monospace',
         wordWrap: 'break-word',
       }}>
         {content}
