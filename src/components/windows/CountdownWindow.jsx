@@ -22,7 +22,6 @@ export default function CountdownWindow({ onClose, zIndex, onFocus, initialPosit
         clearInterval(interval);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
       } else {
-        // Calculations
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -31,7 +30,7 @@ export default function CountdownWindow({ onClose, zIndex, onFocus, initialPosit
 
         setTimeLeft({ days, hours, minutes, seconds, milliseconds });
       }
-    }, 10); // Update every 10ms
+    }, 10);
 
     return () => clearInterval(interval);
   }, []);
@@ -71,7 +70,7 @@ export default function CountdownWindow({ onClose, zIndex, onFocus, initialPosit
         <div className="retro-counter" style={{
           display: 'flex',
           alignItems: 'baseline',
-          fontSize: '64px', // Much larger font to fill 500px
+          fontSize: '64px',
           fontWeight: 'bold',
           gap: '4px',
           letterSpacing: '-2px',

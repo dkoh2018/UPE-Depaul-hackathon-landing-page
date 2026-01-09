@@ -148,7 +148,6 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
   const handleMouseDown = useCallback((e) => {
     if (e.button !== 0) return;
     
-    // Don't drag if clicking buttons or specific interactive areas
     if (e.target.closest('button')) return;
     
     const rect = containerRef.current.getBoundingClientRect();
@@ -286,21 +285,20 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
       onMouseDown={dragAnywhere ? handleMouseDown : undefined}
       onTouchStart={dragAnywhere ? handleTouchStart : undefined}
     >
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-        border: `1px solid ${VSCODE_COLORS.border}`,
-        backgroundColor: VSCODE_COLORS.background,
-        borderRadius: '8px',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-        height: '100%',
-        position: 'relative',
-      }}>
-        {/* Draggable header with tabs */}
-        <div
-          onMouseDown={!dragAnywhere ? handleMouseDown : undefined}
-          onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          border: `1px solid ${VSCODE_COLORS.border}`,
+          backgroundColor: VSCODE_COLORS.background,
+          borderRadius: '8px',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+          height: '100%',
+          position: 'relative',
+        }}>
+          <div
+            onMouseDown={!dragAnywhere ? handleMouseDown : undefined}
+            onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
           style={{
             backgroundColor: VSCODE_COLORS.headerBg,
             flexShrink: 0,
@@ -356,7 +354,6 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
             [data-code-scroll]::-webkit-scrollbar {
               display: none;
             }
-            /* Force font-size inheritance to override Shiki's default styles */
             [data-code-scroll] pre,
             [data-code-scroll] code,
             [data-code-scroll] span {
@@ -392,7 +389,6 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
           </div>
         </div>
 
-        {/* Resize handle */}
         <div
           onMouseDown={handleResizeMouseDown}
           onTouchStart={handleResizeTouchStart}

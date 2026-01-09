@@ -182,7 +182,7 @@ const RegistrationForm = () => {
                             top: '2px',
                             left: '8px',
                             zIndex: 10,
-                            transformOrigin: 'top left', // Use top-left to make positioning easier
+                            transformOrigin: 'top left',
                         }}
                         aria-label="Close header"
                     >
@@ -206,7 +206,6 @@ const RegistrationForm = () => {
                     alignItems: 'center',
                     gap: '4px'
                 }}>
-                    {}
                     <style>
                         {`
                         @keyframes pixel-blink {
@@ -216,7 +215,6 @@ const RegistrationForm = () => {
                         `}
                     </style>
                     
-                    {}
                     <span style={{ 
                         color: '#333333', 
                         fontSize: '14px', 
@@ -228,7 +226,6 @@ const RegistrationForm = () => {
 
                     (yes, you can close the windows)
 
-                    {}
                     <span style={{ 
                         color: '#333333', 
                         fontSize: '12px', 

@@ -32,7 +32,6 @@ export default function DraggableWindow({
     if (e.button !== 0) return;
     e.preventDefault();
     
-    // Allow interacting with controls inside the title bar without dragging (e.g. close button)
     if (e.target.tagName.toLowerCase() === 'button') return;
 
     const rect = windowRef.current.getBoundingClientRect();
@@ -44,10 +43,8 @@ export default function DraggableWindow({
   }, [position]);
 
   const handleTouchStart = useCallback((e) => {
-    // Allow interacting with controls
     if (e.target.tagName.toLowerCase() === 'button') return;
 
-    // Double tap detection (300ms threshold)
     const now = Date.now();
     if (now - lastTouchRef.current < 300) {
       handleReset();
@@ -72,8 +69,6 @@ export default function DraggableWindow({
     const rect = windowRef.current.getBoundingClientRect();
     aspectRatio.current = rect.width / rect.height;
 
-    // If we haven't dragged yet (position is null), we need to lock in the current position
-    // so that resizing doesn't grow "backwards" due to bottom/right initial positioning.
     if (!position) {
       setPosition({ x: rect.left, y: rect.top });
     }
@@ -94,7 +89,6 @@ export default function DraggableWindow({
     const rect = windowRef.current.getBoundingClientRect();
     aspectRatio.current = rect.width / rect.height;
 
-    // Lock position if not already set
     if (!position) {
       setPosition({ x: rect.left, y: rect.top });
     }
@@ -130,7 +124,6 @@ export default function DraggableWindow({
   }, [isDragging, isResizing, dragOffset, resizeStart]);
 
   const handleTouchMove = useCallback((e) => {
-    // Prevent scrolling while dragging
     if (e.cancelable) e.preventDefault();
 
     const touch = e.touches[0];
@@ -160,7 +153,6 @@ export default function DraggableWindow({
     setIsResizing(false);
   }, []);
 
-  // Clamping logic for resize
   useEffect(() => {
     if (!windowRef.current || !position) return;
 
@@ -172,7 +164,6 @@ export default function DraggableWindow({
       let newX = position.x;
       let newY = position.y;
 
-      // Only clamp if the window is actually outside the viewport
       if (rect.right > vw) {
         newX = Math.max(-100, vw - rect.width);
       }
@@ -220,7 +211,6 @@ export default function DraggableWindow({
   const currentWidth = size?.width ?? initialDimensions.width;
   const scaleFactor = currentWidth / baseWidth;
 
-  // Extract width/height from style to use only as initial values
   const { width: styleWidth, height: styleHeight, ...restStyle } = style;
   
   const windowStyle = {
@@ -234,7 +224,6 @@ export default function DraggableWindow({
       right: 'auto',
     } : {
       ...initialPosition,
-      // Ensure percentage values are handled correctly by CSS
       top: typeof initialPosition.top === 'number' ? `${initialPosition.top}px` : initialPosition.top,
       left: typeof initialPosition.left === 'number' ? `${initialPosition.left}px` : initialPosition.left,
       bottom: typeof initialPosition.bottom === 'number' ? `${initialPosition.bottom}px` : initialPosition.bottom,

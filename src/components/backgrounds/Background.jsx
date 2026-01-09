@@ -19,7 +19,6 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       const vw = window.innerWidth;
       const isMobile = vw < 500;
       
-      // Define heights based on component logic
       let superHeight, labHeight;
       const countdownHeight = 100;
 
@@ -33,9 +32,8 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
         else { superHeight = 190; labHeight = 224; }
       }
 
-      // Calculate vertical stack
       const startTop = isMobile ? 120 : 210;
-      const gap = 55; // Further increased space between windows
+      const gap = 55;
 
       const rightMargin = isMobile ? '5%' : '8%';
 
@@ -43,7 +41,6 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       const countdownPos = { top: startTop + superHeight + gap, right: rightMargin };
       const labPos = { top: startTop + superHeight + gap + countdownHeight + gap, right: rightMargin };
 
-      // Code Editor on the left
       const codePos = isMobile ? { top: '50%', left: '2%' } : { top: '30%', left: '5%' };
 
       setWindowPositions({
