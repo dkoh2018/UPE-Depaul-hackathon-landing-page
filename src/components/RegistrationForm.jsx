@@ -134,7 +134,7 @@ const RegistrationForm = () => {
                 {`
                 @media (max-width: 768px) {
                     .registration-form-wrapper {
-                        max-width: 82% !important;
+                        max-width: 92% !important;
                     }
                 }
                 `}

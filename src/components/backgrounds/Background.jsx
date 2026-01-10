@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { CodeEditorWindow, PixelLabWindow, SuperHackathonBrosWindow, DraggableLogo, DraggableArrow, CountdownWindow, TextWindow } from '../windows'
 import DesktopIcons from '../DesktopIcons'
+import ClippyAssistant from '../ClippyIcon'
 
 import { Z_INDEX } from '../../constants';
 
@@ -10,9 +11,10 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const [showCountdown, setShowCountdown] = useState(true);
   const [showTrashWindow, setShowTrashWindow] = useState(false);
   const [showScheduleWindow, setShowScheduleWindow] = useState(false);
+  const [showFaqWindow, setShowFaqWindow] = useState(false);
   const [popupStack, setPopupStack] = useState([]);
 
-  const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super']);
+  const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super', 'countdown']);
   const [windowPositions, setWindowPositions] = useState({});
 
   useEffect(() => {
@@ -72,6 +74,11 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const handleScheduleClick = () => {
     setShowScheduleWindow(true);
     bringPopupToFront('schedule');
+  };
+
+  const handleFaqClick = () => {
+    setShowFaqWindow(true);
+    bringPopupToFront('faq');
   };
 
   const bringToFront = (id) => {
@@ -251,12 +258,74 @@ OFFICIAL SCHEDULE
           {showCountdown && (
             <CountdownWindow 
               onClose={() => setShowCountdown(false)} 
-              zIndex={Z_INDEX.COUNTDOWN}
+              zIndex={getZIndex('countdown')}
+              onFocus={() => bringToFront('countdown')}
               initialPosition={windowPositions.countdown}
+            />
+          )}
+          {showFaqWindow && (
+            <TextWindow 
+              title="faq.txt"
+              content={`========================================
+DEMONHACKS 2026 - FAQ
+========================================
+
+Q: Who can participate?
+A: All students are welcome! Whether you're a beginner or experienced developer, DemonHacks is open to students of all skill levels and majors.
+
+Q: How much does it cost?
+A: Participation is completely free! We provide meals, snacks, swag, and an amazing experience at no cost to you.
+
+Q: Do I need a team?
+A: You can participate solo or form a team of up to 4 people. We'll also have team formation activities at the start of the event if you're looking for teammates.
+
+Q: What should I bring?
+A: Bring your laptop, charger, student ID, and enthusiasm! We'll provide everything else including food, drinks, and workspace.
+
+Q: Is this beginner-friendly?
+A: Absolutely! We'll have beginner-friendly workshops, mentors to help you, and resources for first-time hackers. This is a great place to learn and build your first project.
+
+Q: Will there be hardware/APIs available?
+A: Yes! We'll have hardware kits and API credits available on a first-come, first-served basis. Details will be shared closer to the event.
+
+Q: How do I submit my project?
+A: Projects will be submitted through Devpost. We'll share the submission link and guidelines at the event.
+
+Q: What is your Code of Conduct?
+A: We follow the MLH Code of Conduct to ensure a safe, inclusive, and harassment-free experience for everyone. All participants must agree to this when registering.
+
+Q: Are there dietary accommodations?
+A: Yes! We provide vegetarian, vegan, and halal options. Please indicate your dietary needs in the registration form.
+
+Q: Is the venue accessible?
+A: Yes, our venue is fully accessible. If you need specific accommodations, please contact us at deltaupe@cdm.depaul.edu.
+
+Q: Will there be travel reimbursements?
+A: Travel reimbursement details are still being finalized. Check back soon or join our updates list for announcements.
+
+Q: Can I work on an existing project?
+A: All projects must be started from scratch at the hackathon. You can use existing libraries, frameworks, and APIs, but the core project work must be done during the event.
+
+========================================
+`}
+              onClose={() => setShowFaqWindow(false)} 
+              zIndex={getPopupZIndex('faq')}
+              onFocus={() => bringPopupToFront('faq')}
+              width={Math.min(750, window.innerWidth * 0.9)}
+              height={Math.min(800, window.innerHeight * 0.85)}
+              fontSize={16}
+              useThemedScrollbar={true}
+              boldTimes={true}
+              resizable={false}
+              initialPosition={{ 
+                top: Math.max(30, window.innerHeight * 0.08), 
+                left: Math.max(20, (window.innerWidth - Math.min(750, window.innerWidth * 0.9)) / 2) 
+              }}
             />
           )}
         </>
       )}
+      <ClippyAssistant onClick={handleFaqClick} isFaqOpen={showFaqWindow} />
       <div style={contentStyle}>
         {children}
       </div>

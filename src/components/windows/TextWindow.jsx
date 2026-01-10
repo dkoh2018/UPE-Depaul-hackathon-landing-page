@@ -37,6 +37,8 @@ export default function TextWindow({ title, content, onClose, zIndex, onFocus, w
       /(SATURDAY, FEBRUARY 28, 2026)/g,
       /(SUNDAY, MARCH 1, 2026)/g,
       /(END OF SCHEDULE)/g,
+      /(DEMONHACKS 2026 - FAQ)/g,
+      /(Q: [^\n]+)/g,
     ];
     
     const combinedPattern = new RegExp(
