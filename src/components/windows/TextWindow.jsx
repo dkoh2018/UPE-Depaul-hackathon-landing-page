@@ -1,8 +1,8 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useMemo } from 'react';
 import { Z_INDEX } from '../../constants';
 import DraggableWindow from './DraggableWindow';
 
-export default function TextWindow({ title, content, onClose, zIndex, onFocus, width = 400, height = 300, initialPosition = { top: 100, left: 100 }, fontSize = 21, dragAnywhere = false, useThemedScrollbar = false }) {
+export default function TextWindow({ title, content, onClose, zIndex, onFocus, width = 400, height = 300, initialPosition = { top: 100, left: 100 }, fontSize = 21, dragAnywhere = false, useThemedScrollbar = false, boldTimes = false }) {
   const contentRef = useRef(null);
   const SCROLLBAR_WIDTH = 24;
 
@@ -24,6 +24,37 @@ export default function TextWindow({ title, content, onClose, zIndex, onFocus, w
       e.stopPropagation();
     }
   }, [isOnScrollbar]);
+
+  const renderedContent = useMemo(() => {
+    if (!boldTimes || typeof content !== 'string') {
+      return content;
+    }
+    
+    const patterns = [
+      /(\d{1,2}:\d{2}\s*(?:AM|PM))/g,
+      /(DEMONHACKS 2026)/g,
+      /(OFFICIAL SCHEDULE)/g,
+      /(SATURDAY, FEBRUARY 28, 2026)/g,
+      /(SUNDAY, MARCH 1, 2026)/g,
+      /(END OF SCHEDULE)/g,
+    ];
+    
+    const combinedPattern = new RegExp(
+      patterns.map(p => p.source).join('|'),
+      'g'
+    );
+    
+    const parts = content.split(combinedPattern);
+    
+    return parts.map((part, index) => {
+      if (part && combinedPattern.test(part)) {
+        combinedPattern.lastIndex = 0;
+        return <strong key={index}>{part}</strong>;
+      }
+      combinedPattern.lastIndex = 0;
+      return part;
+    });
+  }, [content, boldTimes]);
 
   return (
     <DraggableWindow
@@ -56,7 +87,7 @@ export default function TextWindow({ title, content, onClose, zIndex, onFocus, w
           boxSizing: 'border-box',
           cursor: dragAnywhere ? 'grab' : 'auto',
         }}>
-        {content}
+        {renderedContent}
       </div>
     </DraggableWindow>
   );

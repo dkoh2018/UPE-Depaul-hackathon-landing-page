@@ -146,60 +146,93 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           {showScheduleWindow && (
             <TextWindow 
               title="schedule.txt"
-              content={`=======================================
+              content={`==================================
 DEMONHACKS 2026
 OFFICIAL SCHEDULE
-=======================================
+==================================
   +--------------------------------+
-  |      FRIDAY, FEBRUARY 28, 2026             |
+  |      SATURDAY, FEBRUARY 28, 2026      |
   +--------------------------------+
   |
-  o    11:30 AM - 12:30 PM
+  o    09:00 AM
   |    Check-in & Registration
-  |  
-  o    12:30 PM - 1:00 PM
+  |    @ Lobby
+  |
+  o    10:00 AM
   |    Opening Ceremony
-  |  
-  o    1:00 PM - 2:30 PM
-  |    Team Formation & Lunch
-  |  
-  o    2:30 PM
+  |    @ Auditorium
+  |
+  o    11:00 AM
   |    >>> HACKING BEGINS <<<
-  |  
-  |    [ 4.5 HOURS UNTIL DINNER ]
-  |  
-  o    7:00 PM - 8:30 PM
-  |    Dinner Break (Off-site)
-  |  
-  |    [ 3 HOURS UNTIL MIDNIGHT ]
-  |  
-  o    11:30 PM - 12:00 AM
-  |    Midnight Checkpoint
-  |  
-  +  -----------------------------+
-  |         SATURDAY, MARCH 1, 2026       |
-  +  -----------------------------+
-  |  
-  o    12:00 AM - 8:00 AM
-  |    [ 8 HOURS OVERNIGHT GRIND ]
-  |  
-  o    8:00 AM - 9:30 AM
-  |    Morning Coffee Run
-  |  
-  o    9:30 AM - 10:30 AM
-  |    Upload & Polish
-  |  
-  o    10:30 AM
-  |    Submit code
-  |  
-  o    11:30 AM - 12:00 PM
-  |    Awards & Closing
-  |  
+  |    @ All Rooms
+  |
+  o    12:30 PM
+  |    Lunch
+  |    @ Cafeteria
+  |
+  o    02:00 PM
+  |    Workshop: Intro to Web Dev
+  |    @ Room 201
+  |
+  o    03:30 PM
+  |    Workshop: APIs & Integrations
+  |    @ Room 202
+  |
+  o    05:00 PM
+  |    Team Formation & Networking
+  |    @ Lounge
+  |
+  o    06:30 PM
+  |    Dinner
+  |    @ Cafeteria
+  |
+  o    08:00 PM
+  |    Workshop: UI/UX Basics
+  |    @ Room 201
+  |
+  o    11:00 PM
+  |    Midnight Snack
+  |    @ Lounge
+  |
+  +--------------------------------+
+  |            SUNDAY, MARCH 1, 2026                |
+  +--------------------------------+
+  |
+  o    08:00 AM
+  |    Breakfast
+  |    @ Cafeteria
+  |
+  o    10:00 AM
+  |    Hacking Ends
+  |    @ All Rooms
+  |
+  o    10:15 AM
+  |    Project Submissions Due
+  |    @ Devpost
+  |
+  o    11:00 AM
+  |    Project Expo & Judging
+  |    @ Main Hall
+  |
+  o    01:00 PM
+  |    Lunch
+  |    @ Cafeteria
+  |
+  o    02:00 PM
+  |    Final Presentations
+  |    @ Auditorium
+  |
+  o    03:30 PM
+  |    Awards Ceremony
+  |    @ Auditorium
+  |
+  o    04:30 PM
+  |    Closing & Group Photo
+  |    @ Auditorium
+  |
   +-----------------------------+
-  |           END OF SCHEDULE                      |
+  |                 END OF SCHEDULE                 |
   +-----------------------------+
-
-
 `}
               onClose={() => setShowScheduleWindow(false)} 
               zIndex={getPopupZIndex('schedule')}
@@ -208,6 +241,7 @@ OFFICIAL SCHEDULE
               height={600}
               fontSize={13}
               useThemedScrollbar={true}
+              boldTimes={true}
               initialPosition={{ 
                 top: Math.max(120, window.innerHeight * 0.15 + 60), 
                 left: Math.max(20, (window.innerWidth - 450) / 2 + 50) 
