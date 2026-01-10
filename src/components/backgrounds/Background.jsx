@@ -313,7 +313,7 @@ A: All projects must be started from scratch at the hackathon. You can use exist
               onFocus={() => bringPopupToFront('faq')}
               width={Math.min(750, window.innerWidth * 0.9)}
               height={Math.min(800, window.innerHeight * 0.85)}
-              fontSize={16}
+              fontSize={11}
               useThemedScrollbar={true}
               boldTimes={true}
               resizable={false}
