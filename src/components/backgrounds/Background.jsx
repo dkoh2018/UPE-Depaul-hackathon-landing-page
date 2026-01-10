@@ -141,8 +141,8 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
               onClose={() => setShowTrashWindow(false)} 
               zIndex={getPopupZIndex('trash')}
               onFocus={() => bringPopupToFront('trash')}
-              width={300}
-              height={200}
+              width={380}
+              height={280}
               useThemedScrollbar={true}
               initialPosition={{ 
                 top: Math.max(80, window.innerHeight * 0.15), 
