@@ -10,6 +10,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const [showCountdown, setShowCountdown] = useState(true);
   const [showTrashWindow, setShowTrashWindow] = useState(false);
   const [showScheduleWindow, setShowScheduleWindow] = useState(false);
+  const [popupStack, setPopupStack] = useState([]);
 
   const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super']);
   const [windowPositions, setWindowPositions] = useState({});
@@ -65,12 +66,12 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
 
   const handleTrashClick = () => {
     setShowTrashWindow(true);
-    bringToFront('trash');
+    bringPopupToFront('trash');
   };
 
   const handleScheduleClick = () => {
     setShowScheduleWindow(true);
-    bringToFront('schedule');
+    bringPopupToFront('schedule');
   };
 
   const bringToFront = (id) => {
@@ -83,6 +84,18 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const getZIndex = (id) => {
      const index = windowStack.indexOf(id);
      return Z_INDEX.WINDOWS_BASE + index;
+  };
+
+  const bringPopupToFront = (id) => {
+    setPopupStack((prev) => {
+      if (prev[prev.length - 1] === id) return prev;
+      return [...prev.filter(p => p !== id), id];
+    });
+  };
+
+  const getPopupZIndex = (id) => {
+    const index = popupStack.indexOf(id);
+    return Z_INDEX.POPUP_BASE + (index >= 0 ? index : 0);
   };
 
   return (
@@ -119,10 +132,11 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
               title="trash"
               content="your code (jk)"
               onClose={() => setShowTrashWindow(false)} 
-              zIndex={Z_INDEX.COUNTDOWN + 10}
-              onFocus={() => bringToFront('trash')}
+              zIndex={getPopupZIndex('trash')}
+              onFocus={() => bringPopupToFront('trash')}
               width={300}
               height={200}
+              useThemedScrollbar={true}
               initialPosition={{ 
                 top: Math.max(80, window.innerHeight * 0.15), 
                 left: Math.max(20, (window.innerWidth - 300) / 2 - 50) 
@@ -133,8 +147,6 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
             <TextWindow 
               title="schedule.txt"
               content={`=======================================
-!!! DRAFT - TESTING ONLY !!!
-!!! NOT FINAL !!!
 DEMONHACKS 2026
 OFFICIAL SCHEDULE
 =======================================
@@ -190,11 +202,12 @@ OFFICIAL SCHEDULE
 
 `}
               onClose={() => setShowScheduleWindow(false)} 
-              zIndex={Z_INDEX.COUNTDOWN + 11}
-              onFocus={() => bringToFront('schedule')}
+              zIndex={getPopupZIndex('schedule')}
+              onFocus={() => bringPopupToFront('schedule')}
               width={450}
               height={600}
               fontSize={13}
+              useThemedScrollbar={true}
               initialPosition={{ 
                 top: Math.max(120, window.innerHeight * 0.15 + 60), 
                 left: Math.max(20, (window.innerWidth - 450) / 2 + 50) 

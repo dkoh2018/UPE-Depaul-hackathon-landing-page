@@ -6,4 +6,5 @@ export const Z_INDEX = {
   COUNTDOWN: 95,
   LOGO: 90,
   FORM: 100,
+  POPUP_BASE: 110,
 };
