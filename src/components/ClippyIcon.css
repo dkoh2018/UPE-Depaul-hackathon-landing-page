@@ -53,15 +53,13 @@
 .clippy-bubble {
   position: absolute;
   bottom: 130px;
-  left: 0;
-  background: #c0c0c0;
-  border: 2px outset #fff;
-  box-shadow: 
-    inset -1px -1px 0 #808080,
-    inset 1px 1px 0 #fff,
-    2px 2px 0 rgba(0,0,0,0.3);
+  left: 10px;
+  background: #FFFFC8;
+  border: 1px solid #808080;
+  border-radius: 8px;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
   padding: 8px 12px;
-  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-family: 'Tahoma', 'MS Sans Serif', Arial, sans-serif;
   font-size: 12px;
   font-weight: bold;
   color: #000;
@@ -72,21 +70,25 @@
 .clippy-bubble::after {
   content: '';
   position: absolute;
-  bottom: -10px;
-  left: 50px;
-  border-width: 10px 8px 0 8px;
-  border-style: solid;
-  border-color: #c0c0c0 transparent transparent transparent;
+  bottom: -12px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 12px solid #FFFFC8;
 }
 
 .clippy-bubble::before {
   content: '';
   position: absolute;
   bottom: -14px;
-  left: 48px;
-  border-width: 12px 10px 0 10px;
-  border-style: solid;
-  border-color: #808080 transparent transparent transparent;
+  left: 29px;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 14px solid #808080;
 }
 
 @keyframes clippy-float {
