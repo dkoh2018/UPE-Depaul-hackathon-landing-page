@@ -39,6 +39,11 @@ export default function TextWindow({ title, content, onClose, zIndex, onFocus, w
       /(END OF SCHEDULE)/g,
       /(DEMONHACKS 2026 - FAQ)/g,
       /(Q: [^\n]+)/g,
+      /(deltaupe@cdm\.depaul\.edu)/g,
+      /(All students are welcome!)/g,
+      /(completely free!)/g,
+      /(ANY university or college)/g,
+      /(No, there are no travel reimbursements)/g,
     ];
     
     const combinedPattern = new RegExp(

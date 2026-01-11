@@ -271,7 +271,7 @@ DEMONHACKS 2026 - FAQ
 ========================================
 
 Q: Who can participate?
-A: All students are welcome! Whether you're a beginner or experienced developer, DemonHacks is open to students of all skill levels and majors.
+A: All students are welcome! This includes students from ANY university or college, not just DePaul. Whether you're a beginner or experienced developer, DemonHacks is open to students of all skill levels and majors.
 
 Q: How much does it cost?
 A: Participation is completely free! We provide meals, snacks, swag, and an amazing experience at no cost to you.
@@ -301,7 +301,7 @@ Q: Is the venue accessible?
 A: Yes, our venue is fully accessible. If you need specific accommodations, please contact us at deltaupe@cdm.depaul.edu.
 
 Q: Will there be travel reimbursements?
-A: Travel reimbursement details are still being finalized. Check back soon or join our updates list for announcements.
+A: No, there are no travel reimbursements available for this event.
 
 Q: Can I work on an existing project?
 A: All projects must be started from scratch at the hackathon. You can use existing libraries, frameworks, and APIs, but the core project work must be done during the event.
@@ -313,13 +313,13 @@ A: All projects must be started from scratch at the hackathon. You can use exist
               onFocus={() => bringPopupToFront('faq')}
               width={Math.min(750, window.innerWidth * 0.9)}
               height={Math.min(800, window.innerHeight * 0.85)}
-              fontSize={11}
+              fontSize={window.innerWidth < 500 ? 16 : 12}
               useThemedScrollbar={true}
               boldTimes={true}
               resizable={false}
               initialPosition={{ 
                 top: Math.max(30, window.innerHeight * 0.08), 
-                left: Math.max(20, (window.innerWidth - Math.min(750, window.innerWidth * 0.9)) / 2) 
+                left: (window.innerWidth - Math.min(750, window.innerWidth * 0.9)) / 2
               }}
             />
           )}
