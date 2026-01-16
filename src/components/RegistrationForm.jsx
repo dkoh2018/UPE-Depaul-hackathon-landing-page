@@ -347,7 +347,7 @@ const RegistrationForm = () => {
                                     <Field style={{ marginBottom: '16px' }}>
                                         <FieldLabel htmlFor="email" required>University Email</FieldLabel>
                                         <Input {...field} id="email" type="email" placeholder="student@university.edu" style={{ width: '100%' }} />
-                                        <FieldDescription>Valid for ALL .edu addresses—all colleges <strong>and</strong> grad programs welcome!</FieldDescription>
+                                        <FieldDescription>College or personal email, either works!</FieldDescription>
                                         <FieldError message={fieldState.error?.message} />
                                     </Field>
                                 )}
