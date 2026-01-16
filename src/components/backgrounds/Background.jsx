@@ -271,37 +271,25 @@ DEMONHACKS 2026 - FAQ
 ========================================
 
 Q: Who can participate?
-A: All students are welcome! This includes students from ANY university or college, not just DePaul. Whether you're a beginner or experienced developer, DemonHacks is open to students of all skill levels and majors.
+A: All students are welcome! Whether you're a beginner or experienced developer, DemonHacks is open to DePaul and non-DePaul students from all around the ChicagoLand area. All skill levels and majors are welcome!
 
 Q: How much does it cost?
 A: Participation is completely free! We provide meals, snacks, swag, and an amazing experience at no cost to you.
 
 Q: Do I need a team?
-A: You can participate solo or form a team of up to 4 people. We'll also have team formation activities at the start of the event if you're looking for teammates.
+A: Yes! Teams must have a minimum of 2 people and a maximum of 6 people. We'll have team formation activities at the start of the event if you're looking for teammates.
 
 Q: What should I bring?
-A: Bring your laptop, charger, student ID, and enthusiasm! We'll provide everything else including food, drinks, and workspace.
+A: Bring your laptop, charger, student ID, and enthusiasm! If you plan to stay overnight, we recommend bringing a blanket, pillow, or sleeping bag. We'll provide everything else including food, drinks, and workspace.
+
+Q: Where is the venue?
+A: DemonHacks will be held at DePaul's CDM (College of Computing and Digital Media) building, located at 243 S Wabash Ave, Chicago, IL 60604. The venue is fully accessible.
 
 Q: Is this beginner-friendly?
 A: Absolutely! We'll have beginner-friendly workshops, mentors to help you, and resources for first-time hackers. This is a great place to learn and build your first project.
 
-Q: Will there be hardware/APIs available?
-A: Yes! We'll have hardware kits and API credits available on a first-come, first-served basis. Details will be shared closer to the event.
-
-Q: How do I submit my project?
-A: Projects will be submitted through Devpost. We'll share the submission link and guidelines at the event.
-
-Q: What is your Code of Conduct?
-A: We follow the MLH Code of Conduct to ensure a safe, inclusive, and harassment-free experience for everyone. All participants must agree to this when registering.
-
-Q: Are there dietary accommodations?
-A: Yes! We provide vegetarian, vegan, and halal options. Please indicate your dietary needs in the registration form.
-
 Q: Is the venue accessible?
-A: Yes, our venue is fully accessible. If you need specific accommodations, please contact us at deltaupe@cdm.depaul.edu.
-
-Q: Will there be travel reimbursements?
-A: No, there are no travel reimbursements available for this event.
+A: Yes, our venue is fully accessible. If you need specific accommodations, please contact us at deltaupe@cdm.depaul.edu or cssociety@depaul.edu.
 
 Q: Can I work on an existing project?
 A: All projects must be started from scratch at the hackathon. You can use existing libraries, frameworks, and APIs, but the core project work must be done during the event.

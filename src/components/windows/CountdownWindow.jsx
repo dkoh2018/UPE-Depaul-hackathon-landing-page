@@ -12,7 +12,7 @@ export default function CountdownWindow({ onClose, zIndex, onFocus, initialPosit
   });
 
   useEffect(() => {
-    const targetDate = new Date('2026-02-28T12:00:00-06:00').getTime();
+    const targetDate = new Date('2026-02-28T09:00:00-06:00').getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();

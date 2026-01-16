@@ -1,5 +1,7 @@
 export const FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLScgnw5sqsdvz9ChBQoI4W35ytoXq9jrKJT3RV5pnBzxNi0GnQ/formResponse";
 
+export const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzbKEW4m8mnEtivTzfIZKYGZ6iGqqzghuEIBP428ulSp6IPs_ZA_Lujvlz8KIKEsg/exec";
+
 export const FORM_FIELDS = {
     fullName: "entry.616707432",
     email: "entry.1971264567",

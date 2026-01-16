@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registrationSchema } from '../lib/formSchema';
-import { FORM_FIELDS, FORM_ACTION_URL, GRAD_YEAR_OPTIONS, TRACK_OPTIONS, TEAM_STATUS_OPTIONS, DIETARY_OPTIONS } from '../utils/formConfig';
+import { FORM_FIELDS, FORM_ACTION_URL, APPS_SCRIPT_URL, GRAD_YEAR_OPTIONS, TRACK_OPTIONS, TEAM_STATUS_OPTIONS, DIETARY_OPTIONS } from '../utils/formConfig';
 import { Field, FieldLabel, FieldError, FieldDescription, Input, Select, RadioItem, CheckboxItem, Button } from './ui/Field';
 import { Z_INDEX } from '../constants';
 
@@ -22,6 +22,9 @@ const RegistrationForm = () => {
         { name: '', email: '', nameError: '' },
         { name: '', email: '', nameError: '' },
     ]);
+
+    const [resumeFile, setResumeFile] = useState(null);
+    const resumeInputRef = useRef(null);
 
     const sanitizeName = (name) => {
         return name.trim().replace(/\s+/g, ' ');
@@ -91,13 +94,45 @@ const RegistrationForm = () => {
         }
     };
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         setSubmitting(true);
+        
+        document.getElementById('google-form').submit();
+        
+        if (resumeFile && APPS_SCRIPT_URL && !APPS_SCRIPT_URL.includes('YOUR_APPS_SCRIPT')) {
+            try {
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64Data = reader.result.split(',')[1];
+                    const formData = form.getValues();
+                    
+                    await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fullName: formData.fullName,
+                            email: formData.email,
+                            gradYear: formData.gradYear,
+                            track: formData.track,
+                            teamStatus: formData.teamStatus,
+                            teammateDetails: formData.teammateDetails,
+                            dietaryRestrictions: formData.dietaryRestrictions?.join(', ') || '',
+                            resumeData: base64Data,
+                            resumeName: resumeFile.name
+                        })
+                    });
+                };
+                reader.readAsDataURL(resumeFile);
+            } catch (err) {
+                console.error('Resume upload failed:', err);
+            }
+        }
+        
         setTimeout(() => {
             setSubmitted(true);
             setSubmitting(false);
         }, 2000);
-        document.getElementById('google-form').submit();
     };
 
     if (submitted) {
@@ -465,6 +500,64 @@ const RegistrationForm = () => {
                                     </Field>
                                 )}
                             />
+
+                            <Field style={{ marginBottom: '20px' }}>
+                                <FieldLabel>Resume (Optional)</FieldLabel>
+                                <FieldDescription>Upload your resume (.pdf, .doc, .docx) - Max 40MB</FieldDescription>
+                                <input
+                                    type="file"
+                                    ref={resumeInputRef}
+                                    accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                    onChange={(e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file && file.size > 40 * 1024 * 1024) {
+                                            alert('File size must be less than 40MB');
+                                            e.target.value = '';
+                                            return;
+                                        }
+                                        setResumeFile(file || null);
+                                    }}
+                                    style={{ display: 'none' }}
+                                />
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
+                                    <button
+                                        type="button"
+                                        onClick={() => resumeInputRef.current?.click()}
+                                        style={{
+                                            padding: '4px 12px',
+                                            fontSize: '12px',
+                                            fontFamily: 'inherit',
+                                            background: '#c0c0c0',
+                                            border: '2px outset #fff',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        Choose File
+                                    </button>
+                                    <span style={{ fontSize: '12px', color: '#333', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        {resumeFile ? resumeFile.name : 'No file selected'}
+                                    </span>
+                                    {resumeFile && (
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setResumeFile(null);
+                                                if (resumeInputRef.current) resumeInputRef.current.value = '';
+                                            }}
+                                            style={{
+                                                padding: '2px 6px',
+                                                fontSize: '10px',
+                                                fontFamily: 'inherit',
+                                                background: '#c0c0c0',
+                                                border: '2px outset #fff',
+                                                cursor: 'pointer',
+                                            }}
+                                        >
+                                            ✕
+                                        </button>
+                                    )}
+                                </div>
+                            </Field>
 
                             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
                                 <Button type="submit" isLoading={submitting}>Register Now</Button>
