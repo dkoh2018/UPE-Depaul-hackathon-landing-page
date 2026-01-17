@@ -503,7 +503,13 @@ const RegistrationForm = () => {
 
                             <Field style={{ marginBottom: '20px' }}>
                                 <FieldLabel>Resume (Optional)</FieldLabel>
-                                <FieldDescription>Upload your resume (.pdf, .doc, .docx) - Max 40MB</FieldDescription>
+                                <FieldDescription>
+                                    Upload your resume (.pdf, .doc, .docx) - Max 40MB
+                                    <br />
+                                    <span style={{ fontStyle: 'italic', color: '#555' }}>
+                                        Note: Resumes will be shared with our sponsors for recruitment purposes.
+                                    </span>
+                                </FieldDescription>
                                 <input
                                     type="file"
                                     ref={resumeInputRef}
