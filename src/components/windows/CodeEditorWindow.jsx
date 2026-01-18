@@ -291,6 +291,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
       onTouchStartCapture={() => onFocus && onFocus()}
       onMouseDown={dragAnywhere ? handleMouseDown : undefined}
       onTouchStart={dragAnywhere ? handleTouchStart : undefined}
+      onDoubleClick={dragAnywhere ? handleReset : undefined}
     >
         <div style={{
           display: 'flex',

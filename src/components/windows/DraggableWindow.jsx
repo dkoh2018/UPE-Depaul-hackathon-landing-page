@@ -242,6 +242,7 @@ export default function DraggableWindow({
       onTouchStartCapture={() => onFocus && onFocus()}
       onMouseDown={dragAnywhere ? handleMouseDown : undefined}
       onTouchStart={dragAnywhere ? handleTouchStart : undefined}
+      onDoubleClick={dragAnywhere ? handleReset : undefined}
     >
       <div className="window" style={{ margin: 0, width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
         <div 
