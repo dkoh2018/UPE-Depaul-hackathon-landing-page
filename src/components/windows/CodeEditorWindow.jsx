@@ -361,6 +361,8 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
             overflow: 'auto', 
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch',
+            touchAction: 'pan-y',
           }}
         >
           <style>{`
