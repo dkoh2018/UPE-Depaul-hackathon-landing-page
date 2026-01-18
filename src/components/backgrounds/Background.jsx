@@ -50,7 +50,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       const countdownPos = { top: startTop + superHeight + gap, right: rightMargin };
       const codePos = { top: startTop + superHeight + gap + countdownHeight + gap, right: rightMargin };
 
-      const superPos = isMobile ? { top: '50%', left: '2%' } : { top: codeStartTop + 100, left: '5%' };
+      const superPos = isMobile ? { top: '50%', left: '2%' } : { top: codeStartTop + 150, left: '5%' };
 
       const countdownCenteredPos = {
         top: isMobile ? '58%' : '48%',
@@ -178,24 +178,24 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           
           {/* Independent Sponsor Logos */}
           <DraggableSponsor 
-            key={`sponsor-argonne-${windowResetKey}`}
+            key={`sponsor-argonne-v4-${windowResetKey}`}
             src="/images/argonne-national-laboratory.png"
             alt="Argonne National Laboratory"
             initialPos={{ x: 60, y: 350 }}
             width={180}
           />
           <DraggableSponsor 
-            key={`sponsor-cdm-${windowResetKey}`}
+            key={`sponsor-cdm-v4-${windowResetKey}`}
             src="/images/CDMLogo.png"
             alt="DePaul CDM"
             initialPos={{ x: 90, y: 460 }}
-            width={110}
+            width={220}
           />
           <DraggableSponsor 
-            key={`sponsor-microsoft-${windowResetKey}`}
+            key={`sponsor-microsoft-v4-${windowResetKey}`}
             src="/images/Microsoft_logo.svg"
             alt="Microsoft"
-            initialPos={{ x: 80, y: 560 }}
+            initialPos={{ x: 80, y: 720 }}
             width={140}
           />
           {showTrashWindow && (
