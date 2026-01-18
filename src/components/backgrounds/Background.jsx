@@ -50,7 +50,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       const countdownPos = { top: startTop + superHeight + gap, right: rightMargin };
       const codePos = { top: startTop + superHeight + gap + countdownHeight + gap, right: rightMargin };
 
-      const superPos = isMobile ? { top: '50%', left: '2%' } : { top: codeStartTop, left: '5%' };
+      const superPos = isMobile ? { top: '50%', left: '2%' } : { top: codeStartTop + 100, left: '5%' };
 
       const countdownCenteredPos = {
         top: isMobile ? '58%' : '48%',
