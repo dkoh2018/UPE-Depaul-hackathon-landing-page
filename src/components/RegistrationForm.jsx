@@ -293,25 +293,8 @@ const RegistrationForm = () => {
                         <p style={{ margin: '0 0 16px 0', fontSize: '14px', lineHeight: '1.6' }}>
                             Join us for <strong>24 hours</strong> of hacking, learning, and building at DePaul University.
                         </p>
-                        <div style={{ 
-                            marginBottom: '20px', 
-                            padding: '10px 12px', 
-                            background: '#f8f8f8', 
-                            border: '1px inset #808080', 
-                            borderRadius: '2px'
-                        }}>
-                            <span style={{ fontSize: '11px', color: '#333' }}>
-                                Not a DePaul student? <strong>No problem.</strong> All university <strong>and</strong> graduate students are welcome!
-                            </span>
-                        </div>
-                        <div style={{ borderTop: '1px solid #ccc', padding: '16px 0 0 0' }}>
-                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Network</strong> with peers and industry professionals</p>
-                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Topic talks</strong> throughout the event</p>
-                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Prizes</strong> for top 3 teams, judged by club officers & industry pros</p>
-                            <p style={{ margin: 0, fontSize: '13px' }}>• <strong>Free food</strong> provided throughout the event</p>
-                        </div>
                         
-                        <div style={{ borderTop: '1px solid #ccc', marginTop: '16px', paddingTop: '16px' }}>
+                        <div style={{ marginBottom: '20px' }}>
                             <h3 style={{ fontSize: '14px', margin: '0 0 12px 0', textTransform: 'uppercase', letterSpacing: '1px' }}>Our Sponsors</h3>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
                                 <div style={{ 
@@ -319,8 +302,13 @@ const RegistrationForm = () => {
                                     textAlign: 'center', 
                                     background: '#f8f8f8', 
                                     border: '1px inset #808080', 
-                                    borderRadius: '2px'
+                                    borderRadius: '2px',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
                                 }}>
+                                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" style={{ height: '32px', marginBottom: '8px', objectFit: 'contain' }} />
                                     <div style={{ fontWeight: 'bold', fontSize: '13px' }}>Microsoft</div>
                                     <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Gold Sponsor</div>
                                 </div>
@@ -329,8 +317,13 @@ const RegistrationForm = () => {
                                     textAlign: 'center', 
                                     background: '#f8f8f8', 
                                     border: '1px inset #808080', 
-                                    borderRadius: '2px'
+                                    borderRadius: '2px',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
                                 }}>
+                                    <img src="https://logo.clearbit.com/depaul.edu" alt="DePaul CDM" style={{ height: '32px', marginBottom: '8px', objectFit: 'contain' }} />
                                     <div style={{ fontWeight: 'bold', fontSize: '13px' }}>DePaul CDM</div>
                                     <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Gold Sponsor</div>
                                 </div>
@@ -342,11 +335,35 @@ const RegistrationForm = () => {
                                 textAlign: 'center', 
                                 background: '#f8f8f8', 
                                 border: '1px inset #808080', 
-                                borderRadius: '2px'
+                                borderRadius: '2px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center'
                             }}>
+                                <img src="https://logo.clearbit.com/anl.gov" alt="Argonne" style={{ height: '32px', marginBottom: '8px', objectFit: 'contain' }} />
                                 <div style={{ fontWeight: 'bold', fontSize: '13px' }}>Argonne National Laboratory</div>
                                 <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Mentors</div>
                             </div>
+                        </div>
+
+                        <div style={{ 
+                            marginBottom: '20px', 
+                            padding: '10px 12px', 
+                            background: '#f8f8f8', 
+                            border: '1px inset #808080', 
+                            borderRadius: '2px'
+                        }}>
+                            <span style={{ fontSize: '11px', color: '#333' }}>
+                                Not a DePaul student? <strong>No problem.</strong> All university <strong>and</strong> graduate students are welcome!
+                            </span>
+                        </div>
+
+                        <div style={{ borderTop: '1px solid #ccc', paddingTop: '16px' }}>
+                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Network</strong> with peers and industry professionals</p>
+                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Topic talks</strong> throughout the event</p>
+                            <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Prizes</strong> for top 3 teams, judged by club officers & industry pros</p>
+                            <p style={{ margin: 0, fontSize: '13px' }}>• <strong>Free food</strong> provided throughout the event</p>
                         </div>
                     </div>
                 </div>
