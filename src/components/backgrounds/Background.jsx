@@ -178,24 +178,24 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           
           {/* Independent Sponsor Logos */}
           <DraggableSponsor 
-            key={`sponsor-argonne-v6-${windowResetKey}`}
+            key={`sponsor-argonne-v7-${windowResetKey}`}
             src="/images/argonne-national-laboratory.png"
             alt="Argonne National Laboratory"
             initialPos={{ x: 60, y: 350 }}
             width={180}
           />
           <DraggableSponsor 
-            key={`sponsor-cdm-v6-${windowResetKey}`}
+            key={`sponsor-cdm-v7-${windowResetKey}`}
             src="/images/CDMLogo.png"
             alt="DePaul CDM"
             initialPos={{ x: 50, y: 440 }}
             width={220}
           />
           <DraggableSponsor 
-            key={`sponsor-microsoft-v6-${windowResetKey}`}
+            key={`sponsor-microsoft-v7-${windowResetKey}`}
             src="/images/Microsoft_logo.svg"
             alt="Microsoft"
-            initialPos={{ x: 70, y: 560 }}
+            initialPos={{ x: 70, y: 530 }}
             width={140}
           />
           {showTrashWindow && (
