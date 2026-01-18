@@ -318,6 +318,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
             cursor: isDragging ? 'grabbing' : 'grab',
             touchAction: 'none',
           }}
+          title="Double-click to reset position"
         >
           {codeFiles.map((file, index) => (
             <div 
@@ -413,6 +414,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
             borderBottomRightRadius: '8px',
             zIndex: 10,
           }}
+          title="Drag to resize"
         />
       </div>
     </div>

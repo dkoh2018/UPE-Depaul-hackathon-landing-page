@@ -8,6 +8,8 @@ const CLIPPY_MESSAGES = [
   "Click me for FAQ!",
   "Stuck? Let me help!",
   "Pro tip: Read the FAQ! 📖",
+  "Pro tip: Double-click a window to reset it! 🖱️",
+  "Need more space? Drag the bottom-right corner! ↘️",
 ];
 
 const IPHONE_MAX_WIDTH = 430;

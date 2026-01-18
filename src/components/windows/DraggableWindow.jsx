@@ -251,6 +251,7 @@ export default function DraggableWindow({
           onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
           onDoubleClick={handleReset}
           style={{ cursor: isDragging ? 'grabbing' : 'grab', flexShrink: 0 }}
+          title="Double-click to reset position"
         >
           <button 
             aria-label="Close" 
@@ -287,6 +288,7 @@ export default function DraggableWindow({
                 touchAction: 'none',
                 zIndex: 10,
               }}
+              title="Drag to resize"
             />
           )}
         </div>
