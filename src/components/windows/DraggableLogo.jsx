@@ -4,12 +4,20 @@ import { Z_INDEX } from '../../constants';
 
 export default function DraggableLogo() {
   const [logoSize, setLogoSize] = useState(100);
+  const [initialPosition, setInitialPosition] = useState({ x: 35, y: 50 });
 
   useEffect(() => {
     const updateSize = () => {
-      if (window.innerWidth <= 430) setLogoSize(50);
-      else if (window.innerWidth <= 768) setLogoSize(70);
-      else setLogoSize(100);
+      if (window.innerWidth <= 430) {
+        setLogoSize(50);
+        setInitialPosition({ x: 35, y: 50 });
+      } else if (window.innerWidth <= 768) {
+        setLogoSize(70);
+        setInitialPosition({ x: 75, y: 50 });
+      } else {
+        setLogoSize(100);
+        setInitialPosition({ x: 75, y: 50 });
+      }
     };
     updateSize();
     window.addEventListener('resize', updateSize);
@@ -18,7 +26,7 @@ export default function DraggableLogo() {
 
   return (
     <Draggable 
-      initialPos={{ x: 35, y: 50 }} 
+      initialPos={initialPosition} 
       zIndex={Z_INDEX.LOGO}
     >
       <img 

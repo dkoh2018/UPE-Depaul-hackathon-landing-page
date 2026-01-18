@@ -180,24 +180,24 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           
           {/* Independent Sponsor Logos */}
           <DraggableSponsor 
-            key={`sponsor-argonne-v9-${windowResetKey}`}
+            key={`sponsor-argonne-v10-${windowResetKey}`}
             src="/images/argonne-national-laboratory.png"
             alt="Argonne National Laboratory"
-            initialPos={isMobile ? { x: 20, y: 350 } : { x: 60, y: 350 }}
+            initialPos={isMobile ? { x: 35, y: 325 } : { x: 90, y: 440 }}
             width={180}
           />
           <DraggableSponsor 
-            key={`sponsor-cdm-v9-${windowResetKey}`}
+            key={`sponsor-cdm-v10-${windowResetKey}`}
             src="/images/CDMLogo.png"
             alt="DePaul CDM"
-            initialPos={isMobile ? { x: 30, y: 420 } : { x: 50, y: 440 }}
+            initialPos={isMobile ? { x: 30, y: 375 } : { x: 85, y: 530 }}
             width={220}
           />
           <DraggableSponsor 
-            key={`sponsor-microsoft-v9-${windowResetKey}`}
+            key={`sponsor-microsoft-v10-${windowResetKey}`}
             src="/images/Microsoft_logo.svg"
             alt="Microsoft"
-            initialPos={isMobile ? { x: 40, y: 500 } : { x: 70, y: 550 }}
+            initialPos={isMobile ? { x: 40, y: 290 } : { x: 100, y: 380 }}
             width={140}
           />
           {showTrashWindow && (

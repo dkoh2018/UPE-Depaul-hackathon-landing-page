@@ -8,7 +8,7 @@ export default function DraggableSponsor({ src, alt, initialPos, width, dropShad
   useEffect(() => {
     const updateSize = () => {
       // Responsive scaling logic
-      if (window.innerWidth <= 430) setCurrentWidth(width * 0.6);
+      if (window.innerWidth <= 430) setCurrentWidth(width * 0.75);
       else if (window.innerWidth <= 768) setCurrentWidth(width * 0.8);
       else setCurrentWidth(width);
     };
@@ -20,7 +20,7 @@ export default function DraggableSponsor({ src, alt, initialPos, width, dropShad
   return (
     <Draggable 
       initialPos={initialPos} 
-      zIndex={Z_INDEX.LOGO || 5} // Use generic logo index or fallback
+      zIndex={Z_INDEX.ARROW}
     >
       <img 
         src={src}
