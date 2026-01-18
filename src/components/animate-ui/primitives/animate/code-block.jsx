@@ -132,12 +132,16 @@ function CodeBlock({
 
     if (!el) return;
 
-    requestAnimationFrame(() => {
-      el.scrollTo({
-        top: el.scrollHeight,
-        behavior: 'smooth',
+    const isNearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 100;
+
+    if (isNearBottom) {
+      requestAnimationFrame(() => {
+        el.scrollTo({
+          top: el.scrollHeight,
+          behavior: 'smooth',
+        });
       });
-    });
+    }
   }, [highlightedCode, writing, isInView, scrollContainerRef, localRef]);
 
   return (
