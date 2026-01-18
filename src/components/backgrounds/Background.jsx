@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { CodeEditorWindow, PixelLabWindow, SuperHackathonBrosWindow, DraggableLogo, DraggableArrow, CountdownWindow, TextWindow } from '../windows'
+import { CodeEditorWindow, PixelLabWindow, SuperHackathonBrosWindow, DraggableLogo, DraggableArrow, DraggableSponsor, CountdownWindow, TextWindow } from '../windows'
 import DesktopIcons from '../DesktopIcons'
 import ClippyAssistant from '../ClippyIcon'
 
@@ -175,6 +175,29 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           )}
           <DraggableLogo key={`logo-${windowResetKey}`} />
           <DraggableArrow key={`arrow-${windowResetKey}`} />
+          
+          {/* Independent Sponsor Logos */}
+          <DraggableSponsor 
+            key={`sponsor-argonne-${windowResetKey}`}
+            src="/images/argonne-national-laboratory.png"
+            alt="Argonne National Laboratory"
+            initialPos={{ x: 60, y: 220 }}
+            width={180}
+          />
+          <DraggableSponsor 
+            key={`sponsor-cdm-${windowResetKey}`}
+            src="/images/CDMLogo.png"
+            alt="DePaul CDM"
+            initialPos={{ x: 90, y: 300 }}
+            width={110}
+          />
+          <DraggableSponsor 
+            key={`sponsor-microsoft-${windowResetKey}`}
+            src="/images/Microsoft_logo.svg"
+            alt="Microsoft"
+            initialPos={{ x: 80, y: 380 }}
+            width={140}
+          />
           {showTrashWindow && (
             <TextWindow 
               title="trash"

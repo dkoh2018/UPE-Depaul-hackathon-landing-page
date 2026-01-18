@@ -26,40 +26,17 @@ export default function DraggableArrow() {
         transformOrigin: 'top left',
       }}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-        <img 
-          src="/images/click_here_to_drag.png"
-          alt="Click here to drag"
-          draggable={false}
-          style={{
-            width: '240px',
-            height: 'auto',
-            pointerEvents: 'none',
-            display: 'block'
-          }}
-        />
-        
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', marginTop: '10px' }}>
-          <img 
-            src="/images/argonne-national-laboratory.png"
-            alt="Argonne National Laboratory"
-            draggable={false}
-            style={{ width: '140px', height: 'auto', pointerEvents: 'none', filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.2))' }}
-          />
-          <img 
-            src="/images/CDMLogo.png"
-            alt="DePaul CDM"
-            draggable={false}
-            style={{ width: '80px', height: 'auto', pointerEvents: 'none', filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.2))' }}
-          />
-          <img 
-            src="/images/Microsoft_logo.svg"
-            alt="Microsoft"
-            draggable={false}
-            style={{ width: '100px', height: 'auto', pointerEvents: 'none', filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.2))' }}
-          />
-        </div>
-      </div>
+      <img 
+        src="/images/click_here_to_drag.png"
+        alt="Click here to drag"
+        draggable={false}
+        style={{
+          width: '240px',
+          height: 'auto',
+          pointerEvents: 'none',
+          display: 'block'
+        }}
+      />
     </Draggable>
   );
 }
