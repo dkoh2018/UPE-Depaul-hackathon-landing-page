@@ -5,6 +5,7 @@ const CLIPPY_MESSAGES = [
   "DONT CLICK ON ME",
   "Read the FAQ!",
   "Double click a window to reset it!",
+  "Resize windows at the bottom right!",
 ];
 
 const IPHONE_MAX_WIDTH = 430;

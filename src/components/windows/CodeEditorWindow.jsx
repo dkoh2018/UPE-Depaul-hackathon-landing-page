@@ -157,6 +157,8 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
     
     if (e.target.closest('button')) return;
     
+    e.preventDefault();
+    
     const rect = containerRef.current.getBoundingClientRect();
     const currentX = position?.x ?? rect.left;
     const currentY = position?.y ?? rect.top;
