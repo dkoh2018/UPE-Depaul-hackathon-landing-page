@@ -310,6 +310,26 @@ const RegistrationForm = () => {
                             <p style={{ margin: '0 0 8px 0', fontSize: '13px' }}>• <strong>Prizes</strong> for top 3 teams, judged by club officers & industry pros</p>
                             <p style={{ margin: 0, fontSize: '13px' }}>• <strong>Free food</strong> provided throughout the event</p>
                         </div>
+                        
+                        <div style={{ borderTop: '1px solid #ccc', marginTop: '16px', paddingTop: '16px' }}>
+                            <h3 style={{ fontSize: '14px', margin: '0 0 12px 0', textTransform: 'uppercase', letterSpacing: '1px' }}>Our Sponsors</h3>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
+                                <div style={{ border: '1px solid #eee', padding: '10px', textAlign: 'center', background: '#fafafa' }}>
+                                    <div style={{ fontWeight: 'bold', fontSize: '13px' }}>Microsoft</div>
+                                    <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Gold Sponsor</div>
+                                </div>
+                                <div style={{ border: '1px solid #eee', padding: '10px', textAlign: 'center', background: '#fafafa' }}>
+                                    <div style={{ fontWeight: 'bold', fontSize: '13px' }}>DePaul CDM</div>
+                                    <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Gold Sponsor</div>
+                                </div>
+                            </div>
+
+                            <h3 style={{ fontSize: '14px', margin: '0 0 12px 0', textTransform: 'uppercase', letterSpacing: '1px' }}>🔬 Mentors & Partners</h3>
+                            <div style={{ border: '1px solid #eee', padding: '10px', textAlign: 'center', background: '#fafafa' }}>
+                                <div style={{ fontWeight: 'bold', fontSize: '13px' }}>Argonne National Laboratory</div>
+                                <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Mentors</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
