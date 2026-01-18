@@ -229,6 +229,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
     const touch = e.touches[0];
     
     if (isDragging) {
+      if (e.cancelable) e.preventDefault();
       const newX = touch.clientX - dragOffset.x;
       const newY = touch.clientY - dragOffset.y;
       const constrainedX = Math.max(-100, Math.min(window.innerWidth - 100, newX));
@@ -292,8 +293,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
       onMouseDownCapture={() => onFocus && onFocus()}
       onTouchStartCapture={() => onFocus && onFocus()}
       onMouseDown={dragAnywhere ? handleMouseDown : undefined}
-      // Disable touch drag on body to allow scrolling on mobile
-      onTouchStart={undefined}
+      onTouchStart={dragAnywhere ? handleTouchStart : undefined}
       onDoubleClick={dragAnywhere ? handleReset : undefined}
     >
         <div style={{
@@ -309,8 +309,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
         }}>
           <div
             onMouseDown={!dragAnywhere ? handleMouseDown : undefined}
-            // Always allow touch drag from header
-            onTouchStart={handleTouchStart}
+            onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
             onDoubleClick={handleReset}
           style={{
             backgroundColor: VSCODE_COLORS.headerBg,
@@ -361,8 +360,6 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
             overflow: 'auto', 
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch',
-            touchAction: 'pan-y',
           }}
         >
           <style>{`
