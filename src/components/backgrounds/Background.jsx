@@ -16,6 +16,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const [showTutorialWindow, setShowTutorialWindow] = useState(false);
   const [windowsCleared, setWindowsCleared] = useState(false);
   const [formResetKey, setFormResetKey] = useState(0);
+  const [windowResetKey, setWindowResetKey] = useState(0);
   const [popupStack, setPopupStack] = useState([]);
 
   const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super', 'countdown']);
@@ -106,6 +107,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       setShowCodeEditor(true);
       setShowCountdown(true);
       setFormResetKey(prev => prev + 1);
+      setWindowResetKey(prev => prev + 1);
       setWindowsCleared(false);
     } else {
       setShowPixelLab(false);
@@ -113,6 +115,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       setShowCodeEditor(false);
       setShowTrashWindow(false);
       setShowScheduleWindow(false);
+      setWindowResetKey(prev => prev + 1);
       setWindowsCleared(true);
     }
   };
@@ -149,6 +152,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
         <>
           {showCodeEditor && (
             <CodeEditorWindow 
+              key={`code-${windowResetKey}`}
               zIndex={getZIndex('code')} 
               onFocus={() => bringToFront('code')}
               initialPosition={windowPositions.code}
@@ -156,6 +160,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           )}
           {showPixelLab && (
             <PixelLabWindow 
+              key={`pixel-${windowResetKey}`}
               onClose={() => setShowPixelLab(false)} 
               zIndex={getZIndex('pixel')}
               onFocus={() => bringToFront('pixel')}
@@ -164,14 +169,15 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           )}
           {showSuperBros && (
             <SuperHackathonBrosWindow 
+              key={`super-${windowResetKey}`}
               onClose={() => setShowSuperBros(false)} 
               zIndex={getZIndex('super')}
               onFocus={() => bringToFront('super')}
               initialPosition={windowPositions.super}
             />
           )}
-          <DraggableLogo />
-          <DraggableArrow />
+          <DraggableLogo key={`logo-${windowResetKey}`} />
+          <DraggableArrow key={`arrow-${windowResetKey}`} />
           {showTrashWindow && (
             <TextWindow 
               title="trash"
@@ -298,6 +304,7 @@ OFFICIAL SCHEDULE
           )}
           {showCountdown && (
             <CountdownWindow 
+              key={`countdown-${windowResetKey}`}
               onClose={() => setShowCountdown(false)} 
               zIndex={getZIndex('countdown')}
               onFocus={() => bringToFront('countdown')}
