@@ -9,9 +9,13 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const [showPixelLab, setShowPixelLab] = useState(true);
   const [showSuperBros, setShowSuperBros] = useState(true);
   const [showCountdown, setShowCountdown] = useState(true);
+  const [showCodeEditor, setShowCodeEditor] = useState(true);
   const [showTrashWindow, setShowTrashWindow] = useState(false);
   const [showScheduleWindow, setShowScheduleWindow] = useState(false);
   const [showFaqWindow, setShowFaqWindow] = useState(false);
+  const [showTutorialWindow, setShowTutorialWindow] = useState(false);
+  const [windowsCleared, setWindowsCleared] = useState(false);
+  const [formResetKey, setFormResetKey] = useState(0);
   const [popupStack, setPopupStack] = useState([]);
 
   const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super', 'countdown']);
@@ -36,19 +40,28 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       }
 
       const startTop = isMobile ? 120 : 210;
+      const codeStartTop = isMobile ? 300 : 500;
       const gap = 55;
 
       const rightMargin = isMobile ? '5%' : '8%';
 
-      const superPos = { top: startTop, right: rightMargin };
+      const labPos = { top: startTop, right: rightMargin };
       const countdownPos = { top: startTop + superHeight + gap, right: rightMargin };
-      const labPos = { top: startTop + superHeight + gap + countdownHeight + gap, right: rightMargin };
+      const codePos = { top: startTop + superHeight + gap + countdownHeight + gap, right: rightMargin };
 
-      const codePos = isMobile ? { top: '50%', left: '2%' } : { top: '30%', left: '5%' };
+      const superPos = isMobile ? { top: '50%', left: '2%' } : { top: codeStartTop, left: '5%' };
+
+      const countdownCenteredPos = {
+        top: isMobile ? '58%' : '48%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        right: 'auto'
+      };
 
       setWindowPositions({
         super: superPos,
         countdown: countdownPos,
+        countdownCentered: countdownCenteredPos,
         pixel: labPos,
         code: codePos
       });
@@ -81,6 +94,29 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
     bringPopupToFront('faq');
   };
 
+  const handleTutorialClick = () => {
+    setShowTutorialWindow(true);
+    bringPopupToFront('tutorial');
+  };
+
+  const handleClearDesktop = () => {
+    if (windowsCleared) {
+      setShowPixelLab(true);
+      setShowSuperBros(true);
+      setShowCodeEditor(true);
+      setShowCountdown(true);
+      setFormResetKey(prev => prev + 1);
+      setWindowsCleared(false);
+    } else {
+      setShowPixelLab(false);
+      setShowSuperBros(false);
+      setShowCodeEditor(false);
+      setShowTrashWindow(false);
+      setShowScheduleWindow(false);
+      setWindowsCleared(true);
+    }
+  };
+
   const bringToFront = (id) => {
     setWindowStack((prev) => {
       if (prev[prev.length - 1] === id) return prev;
@@ -111,11 +147,13 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       <DesktopIcons onTrashClick={handleTrashClick} onScheduleClick={handleScheduleClick} />
       {showCodeBoxes && (
         <>
-          <CodeEditorWindow 
-            zIndex={getZIndex('code')} 
-            onFocus={() => bringToFront('code')}
-            initialPosition={windowPositions.code}
-          />
+          {showCodeEditor && (
+            <CodeEditorWindow 
+              zIndex={getZIndex('code')} 
+              onFocus={() => bringToFront('code')}
+              initialPosition={windowPositions.code}
+            />
+          )}
           {showPixelLab && (
             <PixelLabWindow 
               onClose={() => setShowPixelLab(false)} 
@@ -153,6 +191,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           {showScheduleWindow && (
             <TextWindow 
               title="schedule.txt"
+              /*
               content={`==================================
 DEMONHACKS 2026
 OFFICIAL SCHEDULE
@@ -241,6 +280,8 @@ OFFICIAL SCHEDULE
   |                 END OF SCHEDULE                 |
   +-----------------------------+
 `}
+              */
+              content={`TBA`}
               onClose={() => setShowScheduleWindow(false)} 
               zIndex={getPopupZIndex('schedule')}
               onFocus={() => bringPopupToFront('schedule')}
@@ -260,7 +301,7 @@ OFFICIAL SCHEDULE
               onClose={() => setShowCountdown(false)} 
               zIndex={getZIndex('countdown')}
               onFocus={() => bringToFront('countdown')}
-              initialPosition={windowPositions.countdown}
+              initialPosition={windowsCleared ? windowPositions.countdownCentered : windowPositions.countdown}
             />
           )}
           {showFaqWindow && (
@@ -313,8 +354,21 @@ A: All projects must be started from scratch at the hackathon. You can use exist
           )}
         </>
       )}
-      <ClippyAssistant onClick={handleFaqClick} isFaqOpen={showFaqWindow} />
-      <div style={contentStyle}>
+      <ClippyAssistant 
+        onFaqClick={handleFaqClick} 
+        onTutorialClick={handleTutorialClick}
+        onClearDesktop={handleClearDesktop}
+        isFaqOpen={showFaqWindow}
+        windowsCleared={windowsCleared}
+      />
+      <div 
+        key={formResetKey}
+        style={{
+          ...contentStyle,
+          visibility: windowsCleared ? 'hidden' : 'visible',
+          opacity: windowsCleared ? 0 : 1,
+        }}
+      >
         {children}
       </div>
     </div>

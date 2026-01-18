@@ -18,7 +18,6 @@ export default function Draggable({
   }, []);
 
   const startDrag = useCallback((clientX, clientY) => {
-    const rect = elementRef.current.getBoundingClientRect();
     const currentX = position?.x ?? initialPos.x;
     const currentY = position?.y ?? initialPos.y;
     
@@ -31,20 +30,6 @@ export default function Draggable({
     e.preventDefault();
     startDrag(e.clientX, e.clientY);
   }, [startDrag]);
-
-  const handleTouchStart = useCallback((e) => {
-    e.preventDefault();
-    
-    const now = Date.now();
-    if (now - lastTouchRef.current < 300) {
-      handleReset();
-      return;
-    }
-    lastTouchRef.current = now;
-
-    const touch = e.touches[0];
-    startDrag(touch.clientX, touch.clientY);
-  }, [startDrag, handleReset]);
 
   const updatePosition = useCallback((clientX, clientY) => {
     if (!isDragging) return;
@@ -71,6 +56,35 @@ export default function Draggable({
   const stopDrag = useCallback(() => {
     setIsDragging(false);
   }, []);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return;
+
+    const handleTouchStart = (e) => {
+      e.preventDefault();
+      
+      const now = Date.now();
+      if (now - lastTouchRef.current < 300) {
+        setPosition(null);
+        return;
+      }
+      lastTouchRef.current = now;
+
+      const touch = e.touches[0];
+      const currentX = position?.x ?? initialPos.x;
+      const currentY = position?.y ?? initialPos.y;
+      
+      setDragOffset({ x: touch.clientX - currentX, y: touch.clientY - currentY });
+      setIsDragging(true);
+    };
+
+    element.addEventListener('touchstart', handleTouchStart, { passive: false });
+    
+    return () => {
+      element.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, [position, initialPos]);
 
   useEffect(() => {
     if (isDragging) {
@@ -107,7 +121,6 @@ export default function Draggable({
       style={containerStyle}
       className={className} 
       onMouseDown={handleMouseDown}
-      onTouchStart={handleTouchStart}
       onDoubleClick={handleReset}
     >
       {children}

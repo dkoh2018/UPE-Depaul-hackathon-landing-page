@@ -114,13 +114,14 @@ function TsIcon({ style }) {
 
 export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dragAnywhere = true }) {
   const getInitialSize = () => {
-    if (typeof window === 'undefined') return { width: 480, height: 560 };
+    if (typeof window === 'undefined') return { width: 550, height: 440 };
     const vw = window.innerWidth;
-    if (vw < 500) return { width: 250, height: 190 };
-    if (vw >= 1400) return { width: 600, height: 700 };
-    if (vw >= 1200) return { width: 550, height: 642 };
-    if (vw >= 992) return { width: 520, height: 607 };
-    return { width: 480, height: 560 };
+    if (vw < 500) return { width: 320, height: 256 };
+    if (vw >= 1400) return { width: 550, height: 440 };
+    if (vw >= 1200) return { width: 500, height: 400 };
+    if (vw >= 992) return { width: 450, height: 360 };
+    if (vw >= 768) return { width: 400, height: 320 };
+    return { width: 320, height: 256 };
   };
 
   const initialSize = getInitialSize();
@@ -136,6 +137,12 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
   const aspectRatio = useRef(initialSize.width / initialSize.height);
   const baseWidth = 480;
   const scaleFactor = size.width / baseWidth;
+
+
+  const handleReset = useCallback(() => {
+    setPosition(null);
+    setSize(getInitialSize());
+  }, []);
 
   const handleFileDone = useCallback(() => {
     if (activeIndex < codeFiles.length - 1) {
@@ -299,6 +306,7 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
           <div
             onMouseDown={!dragAnywhere ? handleMouseDown : undefined}
             onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
+            onDoubleClick={handleReset}
           style={{
             backgroundColor: VSCODE_COLORS.headerBg,
             flexShrink: 0,

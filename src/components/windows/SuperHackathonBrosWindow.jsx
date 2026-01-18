@@ -10,10 +10,11 @@ export default function SuperHackathonBrosWindow({ onClose, zIndex, onFocus, ini
     const calculateSize = () => {
       const vw = window.innerWidth;
       
-      if (vw >= 1400) setWindowSize({ width: 325, height: 250 });
-      else if (vw >= 1200) setWindowSize({ width: 300, height: 230 });
-      else if (vw >= 992) setWindowSize({ width: 275, height: 210 });
-      else setWindowSize({ width: 250, height: 190 });
+      if (vw < 500) setWindowSize({ width: 250, height: 190 });
+      else if (vw >= 1400) setWindowSize({ width: 600, height: 450 });
+      else if (vw >= 1200) setWindowSize({ width: 550, height: 412 });
+      else if (vw >= 992) setWindowSize({ width: 520, height: 390 });
+      else setWindowSize({ width: 480, height: 360 });
     };
     calculateSize();
   }, []);

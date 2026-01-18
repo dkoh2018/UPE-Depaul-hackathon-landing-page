@@ -386,4 +386,30 @@ button.close {
 .title-bar button.close::after,
 button.close::before,
 button.close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 4px;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.title-bar button.close::before,
+button.close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.title-bar button.close::after,
+button.close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.title-bar button.close:hover::before,
+.title-bar button.close:hover::after,
+button.close:hover::before,
+button.close:hover::after {
+  opacity: 1;
 }

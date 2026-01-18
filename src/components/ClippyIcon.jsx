@@ -12,7 +12,8 @@ const CLIPPY_MESSAGES = [
 
 const IPHONE_MAX_WIDTH = 430;
 
-export default function ClippyAssistant({ onClick, isFaqOpen }) {
+export default function ClippyAssistant({ onFaqClick, onTutorialClick, onClearDesktop, isFaqOpen, windowsCleared }) {
+  const [showMenu, setShowMenu] = useState(false);
   const [showBubble, setShowBubble] = useState(false);
   const [message, setMessage] = useState(CLIPPY_MESSAGES[0]);
   const [clipState, setClipState] = useState('entering');
@@ -24,6 +25,26 @@ export default function ClippyAssistant({ onClick, isFaqOpen }) {
     timersRef.current.forEach(timer => clearTimeout(timer));
     timersRef.current = [];
   }, []);
+
+  const clippyRef = useRef(null);
+
+  useEffect(() => {
+    if (!showMenu) return;
+    
+    const handleClickOutside = (e) => {
+      if (clippyRef.current && !clippyRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [showMenu]);
 
   useEffect(() => {
     const checkIfAtBottom = () => {
@@ -115,7 +136,13 @@ export default function ClippyAssistant({ onClick, isFaqOpen }) {
   const handleClick = () => {
     if (isFaqOpen) return;
     setShowBubble(false);
-    onClick && onClick();
+    setShowMenu(!showMenu);
+  };
+
+  const handleMenuOption = (action) => {
+    setShowMenu(false);
+    const actions = { faq: onFaqClick, tutorial: onTutorialClick, clear: onClearDesktop };
+    actions[action]?.();
   };
 
   if (clipState === 'hidden' || (clipState === 'exiting' && isFaqOpen)) {
@@ -124,15 +151,31 @@ export default function ClippyAssistant({ onClick, isFaqOpen }) {
 
   return (
     <div 
+      ref={clippyRef}
       className={`clippy-assistant clippy-${clipState} ${hiddenByScroll ? 'clippy-scroll-hidden' : ''}`} 
       onClick={handleClick}
     >
-      {showBubble && clipState === 'visible' && !isFaqOpen && !hiddenByScroll && (
+      {showBubble && clipState === 'visible' && !isFaqOpen && !hiddenByScroll && !showMenu && (
         <div className="clippy-bubble">
           {message}
         </div>
       )}
-      <div className="clippy-float">
+      {showMenu && clipState === 'visible' && !hiddenByScroll && (
+        <div className="clippy-menu">
+          <div className="clippy-menu-header">How can I help?</div>
+          <div className="clippy-menu-options">
+            <button className="clippy-menu-option" onClick={() => handleMenuOption('faq')}>
+              <span className="clippy-menu-icon">❓</span>
+              <span>FAQ</span>
+            </button>
+            <button className="clippy-menu-option" onClick={() => handleMenuOption('clear')}>
+              <span className="clippy-menu-icon">{windowsCleared ? '🪟' : '🧹'}</span>
+              <span>{windowsCleared ? 'Show All Windows' : 'Clear All Windows'}</span>
+            </button>
+          </div>
+        </div>
+      )}
+      <div className={`clippy-float ${showMenu ? 'clippy-menu-open' : ''}`}>
         <img src="/images/clippy-head-scratch.gif" alt="Clippy FAQ Assistant" />
       </div>
     </div>
