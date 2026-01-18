@@ -2,14 +2,9 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './ClippyIcon.css';
 
 const CLIPPY_MESSAGES = [
-  "It looks like you have questions! 🤔",
-  "Need help? Click me!",
-  "First hackathon? I got you!",
-  "Click me for FAQ!",
-  "Stuck? Let me help!",
-  "Pro tip: Read the FAQ! 📖",
-  "Pro tip: Double-click a window to reset it! 🖱️",
-  "Need more space? Drag the bottom-right corner! ↘️",
+  "DONT CLICK ON ME",
+  "Read the FAQ!",
+  "Double click a window to reset it!",
 ];
 
 const IPHONE_MAX_WIDTH = 430;
@@ -78,13 +73,17 @@ export default function ClippyAssistant({ onFaqClick, onClearDesktop, isFaqOpen,
     };
   }, []);
 
-  const startCycle = useCallback(() => {
+  const startCycle = useCallback((skipEntrance = false) => {
     if (isFaqOpen) return;
     
     clearAllTimers();
-    setClipState('entering');
     
-    timersRef.current.push(setTimeout(() => setClipState('visible'), 100));
+    if (!skipEntrance) {
+      setClipState('entering');
+      timersRef.current.push(setTimeout(() => setClipState('visible'), 100));
+    } else {
+      setClipState('visible');
+    }
     
     timersRef.current.push(setTimeout(() => {
       setShowBubble(true);
@@ -137,8 +136,23 @@ export default function ClippyAssistant({ onFaqClick, onClearDesktop, isFaqOpen,
 
   const handleClick = () => {
     if (isFaqOpen) return;
+    
+    // Stop the auto-hide cycle when user interacts
+    clearAllTimers();
+    setClipState('visible');
+    
     setShowBubble(false);
     setShowMenu(!showMenu);
+    
+    // If closing menu (toggle), restart cycle? 
+    // Maybe best to just leave him visible until next interaction or effect dependency update
+    if (showMenu) {
+      // If we are closing the menu, we might want to restart the cycle or just let the effect handle it
+      // The useEffect on [cycleCount] or [isFaqOpen] might pick it up if we change something?
+      // Simple fix: just clear/visible is enough to prevent the "disappear" bug.
+      // We can let the existing useEffects restart cycle if need be, but for now just keeping him visible is safer.
+      setTimeout(() => startCycle(true), 500); 
+    }
   };
 
   const handleMenuOption = (action) => {
