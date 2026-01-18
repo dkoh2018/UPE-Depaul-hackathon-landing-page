@@ -181,21 +181,21 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
             key={`sponsor-argonne-${windowResetKey}`}
             src="/images/argonne-national-laboratory.png"
             alt="Argonne National Laboratory"
-            initialPos={{ x: 60, y: 220 }}
+            initialPos={{ x: 60, y: 350 }}
             width={180}
           />
           <DraggableSponsor 
             key={`sponsor-cdm-${windowResetKey}`}
             src="/images/CDMLogo.png"
             alt="DePaul CDM"
-            initialPos={{ x: 90, y: 300 }}
+            initialPos={{ x: 90, y: 460 }}
             width={110}
           />
           <DraggableSponsor 
             key={`sponsor-microsoft-${windowResetKey}`}
             src="/images/Microsoft_logo.svg"
             alt="Microsoft"
-            initialPos={{ x: 80, y: 380 }}
+            initialPos={{ x: 80, y: 560 }}
             width={140}
           />
           {showTrashWindow && (
