@@ -12,7 +12,7 @@ const CLIPPY_MESSAGES = [
 
 const IPHONE_MAX_WIDTH = 430;
 
-export default function ClippyAssistant({ onFaqClick, onTutorialClick, onClearDesktop, isFaqOpen, windowsCleared }) {
+export default function ClippyAssistant({ onFaqClick, onClearDesktop, isFaqOpen, windowsCleared }) {
   const [showMenu, setShowMenu] = useState(false);
   const [showBubble, setShowBubble] = useState(false);
   const [message, setMessage] = useState(CLIPPY_MESSAGES[0]);
@@ -141,7 +141,7 @@ export default function ClippyAssistant({ onFaqClick, onTutorialClick, onClearDe
 
   const handleMenuOption = (action) => {
     setShowMenu(false);
-    const actions = { faq: onFaqClick, tutorial: onTutorialClick, clear: onClearDesktop };
+    const actions = { faq: onFaqClick, clear: onClearDesktop };
     actions[action]?.();
   };
 

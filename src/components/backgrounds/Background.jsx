@@ -13,7 +13,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
   const [showTrashWindow, setShowTrashWindow] = useState(false);
   const [showScheduleWindow, setShowScheduleWindow] = useState(false);
   const [showFaqWindow, setShowFaqWindow] = useState(false);
-  const [showTutorialWindow, setShowTutorialWindow] = useState(false);
+
   const [windowsCleared, setWindowsCleared] = useState(false);
   const [formResetKey, setFormResetKey] = useState(0);
   const [windowResetKey, setWindowResetKey] = useState(0);
@@ -95,10 +95,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
     bringPopupToFront('faq');
   };
 
-  const handleTutorialClick = () => {
-    setShowTutorialWindow(true);
-    bringPopupToFront('tutorial');
-  };
+
 
   const handleClearDesktop = () => {
     if (windowsCleared) {
@@ -363,7 +360,6 @@ A: All projects must be started from scratch at the hackathon. You can use exist
       )}
       <ClippyAssistant 
         onFaqClick={handleFaqClick} 
-        onTutorialClick={handleTutorialClick}
         onClearDesktop={handleClearDesktop}
         isFaqOpen={showFaqWindow}
         windowsCleared={windowsCleared}
