@@ -292,7 +292,8 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
       onMouseDownCapture={() => onFocus && onFocus()}
       onTouchStartCapture={() => onFocus && onFocus()}
       onMouseDown={dragAnywhere ? handleMouseDown : undefined}
-      onTouchStart={dragAnywhere ? handleTouchStart : undefined}
+      // Disable touch drag on body to allow scrolling on mobile
+      onTouchStart={undefined}
       onDoubleClick={dragAnywhere ? handleReset : undefined}
     >
         <div style={{
@@ -308,7 +309,8 @@ export default function CodeEditorWindow({ zIndex, onFocus, initialPosition, dra
         }}>
           <div
             onMouseDown={!dragAnywhere ? handleMouseDown : undefined}
-            onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
+            // Always allow touch drag from header
+            onTouchStart={handleTouchStart}
             onDoubleClick={handleReset}
           style={{
             backgroundColor: VSCODE_COLORS.headerBg,
