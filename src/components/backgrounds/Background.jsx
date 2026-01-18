@@ -21,11 +21,13 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
 
   const [windowStack, setWindowStack] = useState(['code', 'pixel', 'super', 'countdown']);
   const [windowPositions, setWindowPositions] = useState({});
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
 
   useEffect(() => {
     const calculateLayout = () => {
       const vw = window.innerWidth;
       const isMobile = vw < 500;
+      setIsMobile(isMobile);
       
       let superHeight, labHeight;
       const countdownHeight = 100;
@@ -178,24 +180,24 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           
           {/* Independent Sponsor Logos */}
           <DraggableSponsor 
-            key={`sponsor-argonne-v8-${windowResetKey}`}
+            key={`sponsor-argonne-v9-${windowResetKey}`}
             src="/images/argonne-national-laboratory.png"
             alt="Argonne National Laboratory"
-            initialPos={{ x: 60, y: 350 }}
+            initialPos={isMobile ? { x: 20, y: 350 } : { x: 60, y: 350 }}
             width={180}
           />
           <DraggableSponsor 
-            key={`sponsor-cdm-v8-${windowResetKey}`}
+            key={`sponsor-cdm-v9-${windowResetKey}`}
             src="/images/CDMLogo.png"
             alt="DePaul CDM"
-            initialPos={{ x: 50, y: 440 }}
+            initialPos={isMobile ? { x: 30, y: 420 } : { x: 50, y: 440 }}
             width={220}
           />
           <DraggableSponsor 
-            key={`sponsor-microsoft-v8-${windowResetKey}`}
+            key={`sponsor-microsoft-v9-${windowResetKey}`}
             src="/images/Microsoft_logo.svg"
             alt="Microsoft"
-            initialPos={{ x: 70, y: 550 }}
+            initialPos={isMobile ? { x: 40, y: 500 } : { x: 70, y: 550 }}
             width={140}
           />
           {showTrashWindow && (
