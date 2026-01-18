@@ -241,16 +241,14 @@ export default function DraggableWindow({
       onMouseDownCapture={() => onFocus && onFocus()}
       onTouchStartCapture={() => onFocus && onFocus()}
       onMouseDown={dragAnywhere ? handleMouseDown : undefined}
-      // Disable touch drag on body
-      onTouchStart={undefined}
+      onTouchStart={dragAnywhere ? handleTouchStart : undefined}
       onDoubleClick={dragAnywhere ? handleReset : undefined}
     >
       <div className="window" style={{ margin: 0, width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
         <div 
           className="title-bar"
           onMouseDown={!dragAnywhere ? handleMouseDown : undefined}
-          // Always allow touch drag from header
-          onTouchStart={handleTouchStart}
+          onTouchStart={!dragAnywhere ? handleTouchStart : undefined}
           onDoubleClick={handleReset}
           style={{ cursor: isDragging ? 'grabbing' : 'grab', flexShrink: 0 }}
         >
