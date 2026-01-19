@@ -48,6 +48,10 @@ export default function TextWindow({ title, content, onClose, zIndex, onFocus, w
       /(completely free!)/g,
       /(ANY university or college)/g,
       /(No, there are no travel reimbursements)/g,
+      /(DePaul’s UPE chapter)/g,
+      /(Computer Science Society)/g,
+      /(Yes!)/g,
+      /(DePaul and non-DePaul students)/g,
     ];
     
     const combinedPattern = new RegExp(

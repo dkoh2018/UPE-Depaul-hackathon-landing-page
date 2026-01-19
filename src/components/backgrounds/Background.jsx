@@ -340,6 +340,9 @@ OFFICIAL SCHEDULE
 DEMONHACKS 2026 - FAQ
 ========================================
 
+Q: What is DemonHacks?
+A: DemonHacks is the first hackathon organized by DePaul’s UPE chapter and the Computer Science Society, bringing students together for a weekend of building, learning and collaboration.
+
 Q: Who can participate?
 A: All students are welcome! Whether you're a beginner or experienced developer, DemonHacks is open to DePaul and non-DePaul students from all around the ChicagoLand area. All skill levels and majors are welcome!
 
