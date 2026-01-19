@@ -97,6 +97,15 @@ const TrashIcon = () => (
     </svg>
 );
 
+const MapsIcon = () => (
+    <svg width="38" height="38" viewBox="0 0 32 32">
+        <path d="M6,6 L12,4 L20,6 L26,4 L26,26 L20,28 L12,26 L6,28 Z" fill="#eee" stroke="#000" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M12,4 L12,26 M20,6 L20,28" stroke="#000" strokeWidth="1" strokeLinecap="round" fill="none"/>
+        <path d="M16,10 C18.5,10 20.5,12 20.5,14.5 C20.5,18 16,22 16,22 C16,22 11.5,18 11.5,14.5 C11.5,12 13.5,10 16,10 Z" fill="#ff4444" stroke="#000" strokeWidth="1"/>
+        <circle cx="16" cy="14.5" r="2" fill="#fff" />
+    </svg>
+);
+
 const DesktopIcons = ({ onTrashClick, onScheduleClick }) => {
     return (
         <div 
@@ -118,6 +127,11 @@ const DesktopIcons = ({ onTrashClick, onScheduleClick }) => {
                 onClick={() => window.open('https://www.cdm.depaul.edu/Pages/default.aspx', '_blank')}
             />
             <DesktopIcon 
+                icon={<MapsIcon />} 
+                label="Maps" 
+                onClick={() => window.open('https://www.google.com/maps/place/DePaul+University+-+College+of+Computing+and+Digital+Media+(CDM)/@41.8786885,-87.6271065,161a,35y,90h,39.42t/data=!3m2!1e3!5s0x880e2ca3af589c21:0x528d9dbc69b7f140!4m6!3m5!1s0x880e2ca2e3bfd29f:0x401371e1c22aca86!8m2!3d41.8784523!4d-87.6255867!16zL20vMGdmcWZz!5m2!1e4!1e1?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D', '_blank')}
+            />
+            <DesktopIcon 
                 icon={<FolderIcon />} 
                 label="DemonHacks" 
                 onClick={() => window.open('https://demonhacks.vercel.app/', '_blank')}
@@ -132,6 +146,7 @@ const DesktopIcons = ({ onTrashClick, onScheduleClick }) => {
                 label="Depaul CSS" 
                 onClick={() => window.open('https://www.instagram.com/depaulcss/', '_blank')}
             />
+
             <DesktopIcon 
                 icon={<DocumentIcon />} 
                 label="Schedule.txt" 

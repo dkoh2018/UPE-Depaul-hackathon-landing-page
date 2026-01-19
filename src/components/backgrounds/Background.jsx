@@ -55,7 +55,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
       const superPos = isMobile ? { top: '50%', left: '2%' } : { top: codeStartTop + 150, left: '5%' };
 
       const countdownCenteredPos = {
-        top: isMobile ? '58%' : '48%',
+        top: isMobile ? '62%' : '48%',
         left: '50%',
         transform: 'translateX(-50%)',
         right: 'auto'
