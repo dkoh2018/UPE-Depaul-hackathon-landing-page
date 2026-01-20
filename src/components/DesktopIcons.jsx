@@ -134,7 +134,7 @@ const DesktopIcons = ({ onTrashClick, onScheduleClick }) => {
             <DesktopIcon 
                 icon={<FolderIcon />} 
                 label="DemonHacks" 
-                onClick={() => window.open('https://demonhacks.vercel.app/', '_blank')}
+                onClick={() => window.open('https://demonhacks.org/', '_blank')}
             />
             <DesktopIcon 
                 icon={<FolderIcon />} 
