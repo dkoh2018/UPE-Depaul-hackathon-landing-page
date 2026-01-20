@@ -180,11 +180,11 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
           
           {/* Independent Sponsor Logos */}
           <DraggableSponsor 
-            key={`sponsor-argonne-v10-${windowResetKey}`}
-            src="/images/argonne-national-laboratory.png"
-            alt="Argonne National Laboratory"
-            initialPos={isMobile ? { x: 35, y: 325 } : { x: 90, y: 440 }}
-            width={180}
+            key={`sponsor-saf-v10-${windowResetKey}`}
+            src="/images/SAF_B.png"
+            alt="SAF"
+            initialPos={isMobile ? { x: 35, y: 225 } : { x: 95, y: 355 }}
+            width={100}
           />
           <DraggableSponsor 
             key={`sponsor-cdm-v10-${windowResetKey}`}
@@ -197,7 +197,7 @@ export default function Background({ children, pattern = 'scanlines', showCodeBo
             key={`sponsor-microsoft-v10-${windowResetKey}`}
             src="/images/Microsoft_logo.svg"
             alt="Microsoft"
-            initialPos={isMobile ? { x: 40, y: 290 } : { x: 100, y: 380 }}
+            initialPos={isMobile ? { x: 40, y: 325 } : { x: 95, y: 480 }}
             width={140}
           />
           {showTrashWindow && (
