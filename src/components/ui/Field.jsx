@@ -92,6 +92,10 @@ export const Select = React.forwardRef(({ children, className = "", style = {}, 
                     alignItems: 'center',
                     background: '#fff',
                     border: '1.5px solid #000',
+                    color: '#000',
+                    WebkitTapHighlightColor: 'transparent',
+                    outline: 'none',
+                    borderRadius: '0',
                 }}
             >
                 <span>{displayText}</span>

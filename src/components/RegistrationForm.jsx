@@ -608,6 +608,9 @@ const RegistrationForm = () => {
                                             background: '#c0c0c0',
                                             border: '2px outset #fff',
                                             cursor: 'pointer',
+                                            color: '#000',
+                                            WebkitTapHighlightColor: 'transparent',
+                                            borderRadius: '0',
                                         }}
                                     >
                                         Choose File
