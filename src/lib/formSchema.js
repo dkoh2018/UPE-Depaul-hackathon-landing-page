@@ -5,7 +5,7 @@ export const registrationSchema = z.object({
     university: z.string().min(1, "Please enter your university."),
     email: z.string().email("Please enter a valid email address."),
     gradYear: z.string().min(1, "Please select your graduation year."),
-    track: z.string().min(1, "Please select a track."),
+    track: z.string().optional(),
     teamStatus: z.string().min(1, "Please select your team status."),
     teammateDetails: z.string().optional(),
     dietaryRestrictions: z.array(z.string()).optional(),

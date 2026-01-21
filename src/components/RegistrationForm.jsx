@@ -437,12 +437,16 @@ const RegistrationForm = () => {
                                 )}
                             />
 
+                            {/* Hackathon Track Hidden
                             <Controller
                                 name="track"
                                 control={form.control}
                                 render={({ field, fieldState }) => (
                                     <Field style={{ marginBottom: '16px' }}>
                                         <FieldLabel required>Hackathon Track</FieldLabel>
+                                        <FieldDescription style={{ marginTop: '0', marginBottom: '8px' }}>
+                                            You can change this on the starting day.
+                                        </FieldDescription>
                                         <div style={{ marginTop: '8px' }}>
                                             {TRACK_OPTIONS.map((track, idx) => (
                                                 <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '6px', marginBottom: '8px', paddingLeft: '4px' }}>
@@ -468,6 +472,7 @@ const RegistrationForm = () => {
                                     </Field>
                                 )}
                             />
+                            */}
 
                             <Controller
                                 name="teamStatus"

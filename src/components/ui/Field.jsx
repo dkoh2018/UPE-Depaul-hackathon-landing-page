@@ -120,7 +120,7 @@ export const Select = React.forwardRef(({ children, className = "", style = {}, 
                                 padding: '6px 8px',
                                 fontSize: '13px',
                                 cursor: 'pointer',
-                                background: option.value === value ? '#0078d4' : 'transparent',
+                                background: option.value === value ? '#000' : 'transparent',
                                 color: option.value === value ? '#fff' : '#000',
                             }}
                             onMouseEnter={(e) => {
@@ -129,7 +129,7 @@ export const Select = React.forwardRef(({ children, className = "", style = {}, 
                                 }
                             }}
                             onMouseLeave={(e) => {
-                                e.currentTarget.style.background = option.value === value ? '#0078d4' : 'transparent';
+                                e.currentTarget.style.background = option.value === value ? '#000' : 'transparent';
                             }}
                         >
                             {option.label}
