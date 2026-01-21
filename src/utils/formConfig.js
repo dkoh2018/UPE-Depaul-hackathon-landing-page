@@ -4,6 +4,7 @@ export const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzbKEW4
 
 export const FORM_FIELDS = {
     fullName: "entry.616707432",
+    university: "entry.1513733552",
     email: "entry.1971264567",
     gradYear: "entry.716560666",
     track: "entry.832941749",

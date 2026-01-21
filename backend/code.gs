@@ -97,6 +97,7 @@ function setupHeaders() {
     "timestamp", 
     "fullName", 
     "email", 
+    "university",
     "gradYear", 
     "track", 
     "teamStatus",

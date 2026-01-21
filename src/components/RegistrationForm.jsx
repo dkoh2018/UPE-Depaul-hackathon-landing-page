@@ -47,6 +47,7 @@ const RegistrationForm = () => {
         resolver: zodResolver(registrationSchema),
         defaultValues: {
             fullName: '',
+            university: '',
             email: '',
             gradYear: '',
             track: '',
@@ -112,6 +113,7 @@ const RegistrationForm = () => {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             fullName: formData.fullName,
+                            university: formData.university,
                             email: formData.email,
                             gradYear: formData.gradYear,
                             track: formData.track,
@@ -201,6 +203,7 @@ const RegistrationForm = () => {
                 style={{ display: 'none' }}
             >
                 <input type="hidden" name={FORM_FIELDS.fullName} value={form.watch('fullName')} />
+                <input type="hidden" name={FORM_FIELDS.university} value={form.watch('university')} />
                 <input type="hidden" name={FORM_FIELDS.email} value={form.watch('email')} />
                 <input type="hidden" name={FORM_FIELDS.gradYear} value={form.watch('gradYear')} />
                 <input type="hidden" name={FORM_FIELDS.track} value={form.watch('track')} />
@@ -296,35 +299,48 @@ const RegistrationForm = () => {
                         
                         <div style={{ marginBottom: '20px', borderTop: '1px solid #ccc', paddingTop: '16px' }}>
                             <h3 style={{ fontSize: '14px', margin: '0 0 12px 0', textTransform: 'uppercase', letterSpacing: '1px' }}>Our Sponsors</h3>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
-                                <div style={{ 
-                                    padding: '12px', 
-                                    textAlign: 'center', 
-                                    background: '#f8f8f8', 
-                                    border: '1px inset #808080', 
-                                    borderRadius: '2px'
-                                }}>
-                                    <div style={{ fontWeight: 'bold', fontSize: '13px' }}>Microsoft</div>
-                                    <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Gold Sponsor</div>
+                                <div style={{ marginBottom: '12px' }}>
+                                    <div style={{ 
+                                        padding: '12px', 
+                                        textAlign: 'center', 
+                                        background: '#f8f8f8', 
+                                        border: '1px solid #000', 
+                                        borderRadius: '2px'
+                                    }}>
+                                        <div style={{ fontWeight: 'bold', fontSize: '13px' }}>Microsoft</div>
+                                        <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Platinum</div>
+                                    </div>
                                 </div>
-                                <div style={{ 
-                                    padding: '12px', 
-                                    textAlign: 'center', 
-                                    background: '#f8f8f8', 
-                                    border: '1px inset #808080', 
-                                    borderRadius: '2px'
-                                }}>
-                                    <div style={{ fontWeight: 'bold', fontSize: '13px' }}>DePaul CDM</div>
-                                    <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Gold Sponsor</div>
+
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
+                                    <div style={{ 
+                                        padding: '12px', 
+                                        textAlign: 'center', 
+                                        background: '#f8f8f8', 
+                                        border: '1px solid #000', 
+                                        borderRadius: '2px'
+                                    }}>
+                                        <div style={{ fontWeight: 'bold', fontSize: '13px' }}>SAF-B</div>
+                                        <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Silver</div>
+                                    </div>
+                                    <div style={{ 
+                                        padding: '12px', 
+                                        textAlign: 'center', 
+                                        background: '#f8f8f8', 
+                                        border: '1px solid #000', 
+                                        borderRadius: '2px'
+                                    }}>
+                                        <div style={{ fontWeight: 'bold', fontSize: '13px' }}>DePaul CDM</div>
+                                        <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>Silver</div>
+                                    </div>
                                 </div>
-                            </div>
 
                             <h3 style={{ fontSize: '14px', margin: '0 0 12px 0', textTransform: 'uppercase', letterSpacing: '1px' }}>Mentors & Partners</h3>
                             <div style={{ 
                                 padding: '12px', 
                                 textAlign: 'center', 
                                 background: '#f8f8f8', 
-                                border: '1px inset #808080', 
+                                border: '1px solid #000', 
                                 borderRadius: '2px'
                             }}>
                                 <div style={{ fontWeight: 'bold', fontSize: '13px' }}>Argonne National Laboratory</div>
@@ -342,7 +358,7 @@ const RegistrationForm = () => {
                         <div style={{ 
                             padding: '10px 12px', 
                             background: '#f8f8f8', 
-                            border: '1px inset #808080', 
+                            border: '1px solid #000', 
                             borderRadius: '2px'
                         }}>
                             <span style={{ fontSize: '11px', color: '#333' }}>
@@ -384,9 +400,21 @@ const RegistrationForm = () => {
                                 control={form.control}
                                 render={({ field, fieldState }) => (
                                     <Field style={{ marginBottom: '16px' }}>
-                                        <FieldLabel htmlFor="email" required>University Email</FieldLabel>
+                                        <FieldLabel htmlFor="email" required>Email Address</FieldLabel>
+                                        <FieldDescription style={{ marginTop: '0', marginBottom: '6px' }}>College or personal email, either works!</FieldDescription>
                                         <Input {...field} id="email" type="email" placeholder="student@university.edu" style={{ width: '100%' }} />
-                                        <FieldDescription>College or personal email, either works!</FieldDescription>
+                                        <FieldError message={fieldState.error?.message} />
+                                    </Field>
+                                )}
+                            />
+
+                            <Controller
+                                name="university"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field style={{ marginBottom: '16px' }}>
+                                        <FieldLabel htmlFor="university" required>Which university are you from?</FieldLabel>
+                                        <Input {...field} id="university" placeholder="DePaul University" style={{ width: '100%' }} />
                                         <FieldError message={fieldState.error?.message} />
                                     </Field>
                                 )}
