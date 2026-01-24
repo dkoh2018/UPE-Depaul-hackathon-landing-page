@@ -504,6 +504,19 @@ const RegistrationForm = () => {
                                 <FieldLabel>Teammate Details</FieldLabel>
                                 <FieldDescription>Add up to 5 teammates (max 6 per team)</FieldDescription>
                                 
+                                <div style={{ 
+                                    padding: '10px', 
+                                    background: '#f8f8f8', 
+                                    border: '1px solid #000', 
+                                    borderRadius: '2px',
+                                    marginBottom: '12px',
+                                    marginTop: '8px',
+                                    fontSize: '13px',
+                                    color: '#000'
+                                }}>
+                                    <strong>HEADS UP:</strong> Everyone needs to register separately! Only one member needs to list the team details below, but make sure your teammates also register and pick "I already have a team".
+                                </div>
+
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '8px', marginTop: '8px', marginBottom: '4px' }}>
                                     <span style={{ fontSize: '11px', fontWeight: '500', color: '#666' }}>Full Name</span>
                                     <span style={{ fontSize: '11px', fontWeight: '500', color: '#666' }}>Email</span>
