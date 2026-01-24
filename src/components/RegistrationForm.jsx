@@ -514,7 +514,7 @@ const RegistrationForm = () => {
                                     fontSize: '13px',
                                     color: '#000'
                                 }}>
-                                    <strong>HEADS UP:</strong> Everyone needs to register separately! Only one member needs to list the team details below, but make sure your teammates also register and pick "I already have a team".
+                                    <strong>HEADS UP:</strong> Everyone needs to register separately! Only one member <strong>MUST add the team details below</strong>, but make sure your teammates also register and pick "I already have a team".
                                 </div>
 
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '8px', marginTop: '8px', marginBottom: '4px' }}>
