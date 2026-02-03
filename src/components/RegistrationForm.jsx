@@ -383,6 +383,23 @@ const RegistrationForm = () => {
                     <div className="separator"></div>
                     <div className="window-pane" style={{ padding: '20px' }}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <div style={{ 
+                                padding: '10px 12px', 
+                                background: '#f8f8f8', 
+                                border: '1px solid #000', 
+                                borderRadius: '2px',
+                                marginBottom: '16px',
+                                textAlign: 'center'
+                            }}>
+                                <span style={{ 
+                                    fontSize: '13px', 
+                                    fontWeight: 'bold', 
+                                    color: '#000'
+                                }}>
+                                    ⚠️ Only 20/200 Spots Available — Sign Up ASAP!
+                                </span>
+                            </div>
+
                             <Controller
                                 name="fullName"
                                 control={form.control}
