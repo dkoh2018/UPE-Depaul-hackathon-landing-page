@@ -396,7 +396,7 @@ const RegistrationForm = () => {
                                     fontWeight: 'bold', 
                                     color: '#000'
                                 }}>
-                                    ⚠️ Only 20/200 Spots Available — Sign Up ASAP!
+                                    ⚠️ ALL SPOTS ARE CURRENTLY FULL — REGISTERING NOW WILL ADD YOU TO THE WAITLIST
                                 </span>
                             </div>
 
